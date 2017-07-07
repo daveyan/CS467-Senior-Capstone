@@ -1,84 +1,81 @@
-#include "Room.hpp"
-#include <iostream>
+#include "room.hpp"
+#include <iostream> 
 
+#include <vector>
+#include <algorithm>
 
-Room::Room() 
-{
-}
-
-Room::Room(std::string rName)
+Room::Room(string rName)
 {
 	roomName = rName;
 	visited = 0;
+	roomDesc = "Room1.txt";
+
 }
 
 void Room::printRooms()
 {
 	for (int i = 0; i < static_cast<signed int>(roomList.size()); i++){
-		std::cout << roomList[i].roomName << std::endl;
+		cout << roomList[i].roomName << endl;
 	}
 }
 
 void Room::printFeatures()
 {
 	for (int i = 0; i < static_cast<signed int>(featureList.size()); i++) {
-		std::cout << featureList[i].featureName << std::endl;
+		cout << featureList[i].featureName << endl;
 	}
 }
 
 void Room::printObjects()
 {
 	for (int i = 0; i < static_cast<signed int>(objectList.size()); i++) {
-		std::cout << objectList[i].objectName << std::endl;
+		cout << objectList[i].objectName << endl;
 	}
 }
 
-void Room::readDesc(int i)
+void Room::readDesc(int i,string s)
 {
-	std::string readString;
-	std::ifstream roomFile;
-	roomFile.open(roomDesc);
 
-	if (roomFile.is_open()) {
-		while (!roomFile.eof()) {
-			std::getline(roomFile, readString);
-			if (i == 0) {
-				if (readString == "[start" + roomName + "long]") {
-					while (readString != "[end" + roomName + "long]") {
-						std::getline(roomFile, readString);
-						if (readString == "[end" + roomName + "long]") {
-							break;
-						}
-						else {
-							std::cout << readString << std::endl;
-						}
-					}
+	
+	//Building the start and end markers
+	string startCommand = "[start";
+	string endCommand = "[end";
+	
+	string command;
+	command.append(s);
+	command.append(roomName);
+	if(i == 0){
+		command.append("long]");
+	}
+	else{
+		command.append("short]");
+	}
 
+	startCommand.append(command);
+	endCommand.append(command);
+
+	string readString;
+	ifstream roomFile(roomDesc);
+	if(!roomFile.is_open()){
+		cout << "Faild to open file" << endl;
+	}
+	
+	while(std::getline(roomFile,readString)){
+		if(readString.find(startCommand) != string::npos){
+			while(std::getline(roomFile,readString)){
+				if(readString.find(endCommand) != string::npos){
+					break;
 				}
-				visited = 1;
+				else{
+				cout << readString << endl;
+				}						
 			}
-			else {
-				if (readString == "[start" + roomName + "short]") {
-					while (readString != "[end" + roomName + "short]") {
-						std::getline(roomFile, readString);
-						if (readString == "[end" + roomName + "short]") {
-							break;
-						}
-						else {
-							std::cout << readString << std::endl;
-						}
-					}
-
-				}
-			}
-
-
+			visited = 1;
 		}
-		roomFile.close();
 	}
-	else {
-		std::cout << "Unable to open file\n";
-	}
+
+
+
 }
 
 
