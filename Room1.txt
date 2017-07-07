@@ -1,11 +1,3 @@
-a
-b
-c
-[start]
-1
-2
-3
-[end]
 
 [startlookRoom1long]
 this is desc for room1 long
@@ -15,3 +7,9 @@ this is desc for room1 long
 [startlookRoom1short]
 this is desc for room1 short
 [endlookRoom1short]
+
+[startlookRoom2long]
+this is a desc for room2 long
+[endlookRoom2long]
+
+
