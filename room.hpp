@@ -11,7 +11,7 @@ using namespace std;
 class Room
 {
 public:
-	int visited;
+	bool visited;
 	string roomName;
 	string roomDesc;
 	vector<Room> roomList;

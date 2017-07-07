@@ -7,7 +7,7 @@
 Room::Room(string rName)
 {
 	roomName = rName;
-	visited = 0;
+	visited = false;
 	roomDesc = "Room1.txt";
 
 }
@@ -70,7 +70,7 @@ void Room::readDesc(int i,string s)
 				cout << readString << endl;
 				}						
 			}
-			visited = 1;
+			visited = true;
 		}
 	}
 
