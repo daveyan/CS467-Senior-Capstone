@@ -8,7 +8,9 @@ Room::Room(string rName)
 {
 	roomName = rName;
 	visited = false;
-	roomDesc = "Room1.txt";
+	roomDesc = "src/"+ roomName + ".txt";
+	roomDesc.erase(remove_if(roomDesc.begin(),roomDesc.end(), ::isspace), roomDesc.end());
+
 
 }
 
@@ -36,10 +38,12 @@ void Room::printObjects()
 void Room::readDesc(int i,string s)
 {
 
-	
+	bool linesWritten = false;
 	//Building the start and end markers
 	string startCommand = "[start";
 	string endCommand = "[end";
+	string trimmedRoomName = roomName;
+	trimmedRoomName.erase(remove_if(trimmedRoomName.begin(),trimmedRoomName.end(), ::isspace), trimmedRoomName.end());
 	
 	string command;
 	command.append(s);
@@ -55,9 +59,9 @@ void Room::readDesc(int i,string s)
 	endCommand.append(command);
 
 	string readString;
-	ifstream roomFile(roomDesc);
+	ifstream roomFile(trimmedRoomName);
 	if(!roomFile.is_open()){
-		cout << "Faild to open file" << endl;
+		cout << "Failed to open file" << endl;
 	}
 	
 	while(std::getline(roomFile,readString)){
@@ -68,13 +72,16 @@ void Room::readDesc(int i,string s)
 				}
 				else{
 				cout << readString << endl;
+				linesWritten = true;
 				}						
 			}
 			visited = true;
 		}
 	}
 
-
+	if(!linesWritten){
+		cout << "Failed to find starting point" << endl;
+	}
 
 }
 
