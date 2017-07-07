@@ -8,8 +8,6 @@ this is desc for room1 long
 this is desc for room1 short
 [endlookRoom1short]
 
-[startlookRoom2long]
-this is a desc for room2 long
-[endlookRoom2long]
+
 
 
