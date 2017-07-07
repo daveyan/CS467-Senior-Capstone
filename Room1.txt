@@ -1,0 +1,17 @@
+a
+b
+c
+[start]
+1
+2
+3
+[end]
+
+[startlookRoom1long]
+this is desc for room1 long
+[endlookRoom1long]
+
+
+[startlookRoom1short]
+this is desc for room1 short
+[endlookRoom1short]
