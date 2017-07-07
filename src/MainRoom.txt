@@ -1,0 +1,8 @@
+
+[startlookMainRoomlong]
+this is main room long
+[endlookMainRoomlong]
+
+[startlookMainRoomshort]
+this is main room short
+[endlookMainRoomshort]
