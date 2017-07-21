@@ -1,27 +1,49 @@
-#pragma once
-#include "feature.hpp"
-#include "object.hpp"
-#include <iostream>
+#ifndef ROOM_HPP
+#define ROOM_HPP
+
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <fstream>
+#include <iostream>
 
-using namespace std;
+using std::vector;
+using std::string;
 
-class Room
-{
+using std::cout;
+using std::endl;
+
+class Room {
+private:
+    int id;
+    string name;
+    vector<int> items;
+    vector<int> itemsDropped;
+    vector<int> adjRooms;
+    string roomPath;    //for the reader, we don't need both Desc. Just a file path that is created in the constructor
+    //string shortDesc;
+    //string longDesc;
+    bool visited;
 public:
-	bool visited;
-	string roomName;
-	string roomDesc;
-	vector<Room> roomList;
-	vector<Feature> featureList;
-	vector<Object> objectList;
-	Room(string rName);
-	~Room();
-	void printRooms();
-	void printFeatures();
-	void printObjects();
-	void readDesc(int i,string s);
+    Room(int id, string name);//, string shortDesc, string longDesc);
+    void setId(int id);
+    void setName(string name);
+    void addAdjRoom(int roomId);
+    //void setShortDesc(string desc);
+    //void setLongDesc(string desc);
+    void visitRoom();
+    int getId();
+    string getName();
+    vector<int> getItems();
+    vector<int> getDroppedItems();
+    //string getDescription();
+    void getDescription(int visit, string command); 
+    bool isVisited();
+
 };
 
+
+
+
+
+#endif
