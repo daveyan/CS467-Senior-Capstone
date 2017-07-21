@@ -8,6 +8,18 @@ this is desc for room1 long
 this is desc for room1 short
 [endlookRoom1short]
 
+[starteatRoom1long]
+this is eat for room1 long
+[endeatRoom1long]
+
+
+[starteatRoom1short]
+this is eat for room1 short
+[endeatRoom1short]
+
+
+
+
 
 
 

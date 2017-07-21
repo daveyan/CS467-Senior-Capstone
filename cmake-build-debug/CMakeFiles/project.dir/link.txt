@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/project.dir/play.cpp.o CMakeFiles/project.dir/Room.cpp.o CMakeFiles/project.dir/Item.cpp.o CMakeFiles/project.dir/Game.cpp.o  -o project 
