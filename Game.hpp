@@ -10,7 +10,7 @@ using std::string;
 
 class Game {
 private:
-    int curRoom;
+    Room curRoom;
     vector<Room> rooms;
     vector<Item> items;
     vector<int> inventory;

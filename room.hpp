@@ -3,43 +3,47 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
+
+#include "Item.hpp"
 
 using std::vector;
 using std::string;
-
-using std::cout;
-using std::endl;
 
 class Room {
 private:
     int id;
     string name;
-    vector<int> items;
-    vector<int> itemsDropped;
-    vector<int> adjRooms;
-    string roomPath;    //for the reader, we don't need both Desc. Just a file path that is created in the constructor
-    //string shortDesc;
-    //string longDesc;
+    vector<Item> items;
+    vector<Item> itemsDropped;
+    int north;
+    int south;
+    int east;
+    int west;
+    string shortDesc;
+    string longDesc;
     bool visited;
 public:
-    Room(int id, string name);//, string shortDesc, string longDesc);
+    Room(int id, string name, string shortDesc, string longDesc);
     void setId(int id);
     void setName(string name);
-    void addAdjRoom(int roomId);
-    //void setShortDesc(string desc);
-    //void setLongDesc(string desc);
+    void addNorth(int roomId);
+    void addSouth(int roomId);
+    void addEast(int roomId);
+    void addWest(int roomId);
+    void setShortDesc(string desc);
+    void setLongDesc(string desc);
     void visitRoom();
+    void addItem(Item item);
     int getId();
+    int getNorth();
+    int getSouth();
+    int getEast();
+    int getWest();
     string getName();
-    vector<int> getItems();
-    vector<int> getDroppedItems();
-    //string getDescription();
-    void getDescription(int visit, string command); 
+    vector<Item> getItems();
+    vector<Item> getDroppedItems();
+    string getDescription();
     bool isVisited();
-
 };
 
 

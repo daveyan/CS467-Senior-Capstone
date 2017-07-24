@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string.h>
-#include <algorithm>
-
 
 #include "Game.hpp"
 
@@ -11,6 +9,12 @@ using std::endl;
 
 void Game::addRoom(Room room) {
     rooms.push_back(room);
+
+    // If the room being added is the first room (has id of 1), then set
+    // curRoom to that room
+    if (room.getId() == 1) {
+        curRoom = room;
+    }
 }
 
 void Game::addItem(Item item) {
@@ -29,8 +33,6 @@ void Game::play() {
     // Load room and item files
 
     char exit[] = "exit";
-    //temp before parse
-    char look[] = "look";
 
     cout << "Welcome to the Adventure of Pictor." << endl;
 
@@ -38,12 +40,6 @@ void Game::play() {
         cout << "What would you like to do?" << endl;
         memset(userInput, '\0', 256);
         cin.getline(userInput, 255);
-
-        //temporary "look" without parser
-        if(strstr(userInput,look)){
-        	items[0].getDescription(items[0].getInInventory(),"look");
-        }
-
 
         // Implement parser
         if (strstr(userInput, exit)) {
