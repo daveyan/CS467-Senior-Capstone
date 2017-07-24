@@ -41,8 +41,9 @@ void Game::play() {
 
         //temporary "look" without parser
         if(strstr(userInput,look)){
-        	rooms[0].getDescription(rooms[0].isVisited(),look);
+        	items[0].getDescription(items[0].getInInventory(),"look");
         }
+
 
         // Implement parser
         if (strstr(userInput, exit)) {
