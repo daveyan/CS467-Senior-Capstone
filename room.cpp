@@ -1,4 +1,4 @@
-#include "Room.hpp"
+#include "room.hpp"
 
 Room::Room(int id, string name){//, string shortDesc, string longDesc) {
     this->id = id;

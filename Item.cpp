@@ -1,4 +1,5 @@
 #include "Item.hpp"
+#include "ParseLine.hpp"
 
 Item::Item(int id, string name, string description) {
     this->id = id;

@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <vector>
-#include "Room.hpp"
+#include "room.hpp"
 #include "Item.hpp"
 
 using std::vector;
@@ -21,7 +21,7 @@ public:
     void addItem(Item item);
     void addToInventory(int item);
     void removeFromInv(int item);
-    void play();
+    void play(Room* room);
 };
 
 #endif
