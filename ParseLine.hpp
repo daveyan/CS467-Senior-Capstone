@@ -4,6 +4,7 @@
 * Description: Header File for ParseLine.cpp
 *****/
 #include "room.hpp"
+#include "Game.hpp"
 #define MAX 1000
 
 // Struct definitions
@@ -24,8 +25,8 @@ struct Objects {
 };
 
 // Function Prototypes
-int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room* rooms, Objects* objects);
-void commandLoop(RoomAction* r_action, ObjectAction* o_action, Room* rooms, Objects* objects);
+int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room rooms, Objects* objects);
+void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game newGame, Room rooms, Objects* objects);
 int actionType(char* token, RoomAction* r_action, ObjectAction* o_action);
-int isRoom(char* token, Room* rooms, Objects* objects);
-int isObject(char*token, Objects* objects, Room* rooms);
+Room isRoom(char* token, Game newGame, Room rooms, Objects* objects);
+int isObject(char*token, Objects* objects, Room rooms);

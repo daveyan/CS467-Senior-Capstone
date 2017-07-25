@@ -26,7 +26,7 @@ void Game::removeFromInv(int item) {
     inventory.erase(std::remove(inventory.begin(), inventory.end(), item), inventory.end());
 }
 
-void Game::play(Room* room) {
+void Game::play(Game newGame, Room rooms) {
     // Load room and item files
 
 
@@ -96,9 +96,13 @@ void Game::play(Room* room) {
     //temp before parse
     char look[] = "look";
 
-    cout << "Welcome to the Adventure of Pictor." << endl;
+    cout << "Welcome to the Adventure of Pictor." << endl << endl;
 
-    commandLoop(r_action, o_action, room, objects);
+    if (rooms.getId() == 1) {
+	    cout << rooms.getDescription() << endl;
+    }
+
+    commandLoop(r_action, o_action, newGame, rooms, objects);
 
     /*while (!isFinished) {
         cout << "What would you like to do?" << endl;
