@@ -3,7 +3,7 @@
 * Author: Patrick Dodd
 * Description: Header File for ParseLine.cpp
 *****/
-#include "room.hpp"
+#include "Room.hpp"
 #include "Game.hpp"
 #define MAX 1000
 
