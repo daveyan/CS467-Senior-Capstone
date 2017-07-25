@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string.h>
+#include <vector>
 
 #include "Game.hpp"
 
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::vector;
+
 
 void Game::addRoom(Room room) {
     rooms.push_back(room);
@@ -34,12 +38,15 @@ void Game::play() {
 
     char exit[] = "exit";
 
-    cout << "Welcome to the Adventure of Pictor." << endl;
+    cout << "Welcome Bird Spy View." << endl;
+    cout << "You are an intrepid explorer trying to figure out what to do for the weekend. You aren’t too much of an outdoors person but you have been hearing stories of people being attacked by owls at a relatively close state park. Not only that, but there was a tremor at the park a few weeks ago. For most people this would dissuade them from visiting, but you feel like embracing the thrill of danger so you decide to head out." << endl;
 
     while (!isFinished) {
         cout << "What would you like to do?" << endl;
         memset(userInput, '\0', 256);
         cin.getline(userInput, 255);
+
+
 
         // Implement parser
         if (strstr(userInput, exit)) {

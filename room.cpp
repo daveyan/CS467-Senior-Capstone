@@ -8,6 +8,14 @@ Room::Room(int id, string name, string shortDesc, string longDesc) {
     this->visited = false;
 }
 
+Room::Room() {
+    id = -1;
+    name = " ";
+    shortDesc =  " ";
+    longDesc = " ";
+    visited = false;
+}
+
 void Room::setId(int id) {
     this->id = id;
 }

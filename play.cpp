@@ -20,6 +20,8 @@ int main() {
     entrance.addNorth(2); // Vestibule/Lockers is the next room
     entrance.addItem(metalBar);
     // Add room to game
+    //Game newGame(entrance);
+    // Create game. As of now, it needs a room
     newGame.addRoom(entrance);
 
     // Initialize second room

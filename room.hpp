@@ -23,6 +23,7 @@ private:
     string longDesc;
     bool visited;
 public:
+    Room();
     Room(int id, string name, string shortDesc, string longDesc);
     void setId(int id);
     void setName(string name);
