@@ -1,10 +1,11 @@
 CXX = g++
 CXXFLAGS = -std=c++0x
 #add CPP files here
+<<<<<<< HEAD
 
-SCRS = Game.cpp ParseLine.cpp room.cpp Item.cpp play.cpp  
+SCRS = Game.cpp Room.cpp ParseLine.cpp Item.cpp play.cpp  
 #add HPP files here
-HEADERS = Game.hpp room.hpp Item.hpp ParseLine.hpp 
+HEADERS = Game.hpp Room.hpp ParseLine.hpp Item.hpp 
 
 #
 #

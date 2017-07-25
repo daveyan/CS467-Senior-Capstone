@@ -99,7 +99,9 @@ void Game::play(Game newGame, Room rooms) {
     cout << "Welcome to the Adventure of Pictor." << endl << endl;
 
     if (rooms.getId() == 1) {
-	    cout << rooms.getDescription() << endl;
+
+	    //cout << rooms.getDescription() << endl;
+	    rooms.getDesc(rooms.isVisited(),"general");
     }
 
     commandLoop(r_action, o_action, newGame, rooms, objects);

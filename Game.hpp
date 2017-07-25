@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <vector>
-#include "room.hpp"
+#include "Room.hpp"
 #include "Item.hpp"
 
 using std::vector;
