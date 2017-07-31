@@ -8,9 +8,9 @@ int main() {
 
 	
 	
-	Item metalBar(1, "Metal Bar", "Looks sturdy, like it could be used for leverage");
-	Item keycard(2, "Keycard", "Keycard, probably used to gain access to the facility");
-	Item flashlight(3, "Flashlight", "Used to illuminate the darkness");
+	//Item metalBar(1, "Metal Bar", "Looks sturdy, like it could be used for leverage");
+	//Item keycard(2, "Keycard", "Keycard, probably used to gain access to the facility");
+	//Item flashlight(3, "Flashlight", "Used to illuminate the darkness");
 
 	
 	Room entrance(1, "Entrance");
@@ -79,20 +79,20 @@ int main() {
 
 
 	//ITEM ADDING
-	entrance.addItem(metalBar);
+	//entrance.addItem(metalBar);
 
-	vestibule.addItem(keycard);
-	vestibule.addItem(flashlight);
+	//vestibule.addItem(keycard);
+	//vestibule.addItem(flashlight);
 	
 	
 	//ADD ROOMS TO NEW GAME
-	newGame.addRoom(entrance);
-	newGame.addRoom(vestibule);
-	newGame.addRoom(mechanicalRoom);
-	newGame.addRoom(garage);
-	newGame.addRoom(bathroom);
-	newGame.addRoom(breakroom);
-	newGame.addRoom(lounge);
+	newGame.addRoom(entrance); 					//1
+	newGame.addRoom(vestibule);					//2	
+	newGame.addRoom(mechanicalRoom);			//3
+	newGame.addRoom(garage);					//4
+	newGame.addRoom(bathroom);					//5
+	newGame.addRoom(breakroom);					//6
+	newGame.addRoom(lounge);					//7
 	newGame.addRoom(office);
 	newGame.addRoom(mechanicalpartsupplyroom);
 	newGame.addRoom(rootassemblyroom);

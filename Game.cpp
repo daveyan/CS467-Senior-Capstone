@@ -110,10 +110,11 @@ void Game::play(Game newGame, Room rooms) {
 
     cout << "Welcome to the Adventure of Pictor." << endl << endl;
 
-    newGame.setcurRoom(0);
+    if (rooms.getId() == 1) {
 
-    newGame.rooms[0].getDesc(newGame.rooms[0].isVisited(),"general");
-	newGame.rooms[0].visitRoom();
+	    //cout << rooms.getDescription() << endl;
+	    rooms.getDesc(rooms.isVisited(),"general");
+    }
 	   
 
 

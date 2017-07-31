@@ -54,7 +54,10 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 				is_room = true;
 				while (is_room && token != NULL) {
 					newroom = isRoom(token, newGame, rooms);
-					
+
+					cout << newroom.getName() <<endl;
+					cout << rooms.getName() << endl;
+
 					if (strcmp(newroom.getName().c_str(), rooms.getName().c_str()) != 0) {
 						is_room = false;
 						rooms = newroom;
@@ -175,7 +178,7 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 	
 	if (strcmp("North", token) == 0 || strcmp("north", token) == 0) {
 		direction = rooms.getNorth();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
@@ -187,7 +190,7 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 
 	if (strcmp("South", token) == 0 || strcmp("south", token) == 0) {
 		direction = rooms.getSouth();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
@@ -199,7 +202,7 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 
 	if (strcmp("East", token) == 0 || strcmp("east", token) == 0) {
 		direction = rooms.getEast();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
@@ -211,7 +214,7 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 
 	if (strcmp("West", token) == 0 || strcmp("west", token) == 0) {
 		direction = rooms.getWest();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
