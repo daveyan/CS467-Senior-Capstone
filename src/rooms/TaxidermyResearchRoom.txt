@@ -1,11 +1,11 @@
-[startgeneralLoungelong]
+[startgeneralTaxidermyResearchRoomlong]
 
-GENERAL LOUNGE LONG
+GENERAL TaxidermyResearchRoom LONG
 
-[endgeneralLoungelong]
+[endgeneralTaxidermyResearchRoomlong]
 
-[startgeneralLoungeshort]
+[startgeneralTaxidermyResearchRoomshort]
 
-GENERAL LOUNGE SHORT
+GENERAL TaxidermyResearchRoom SHORT
 
-[endgeneralLoungeshort]
+[endgeneralTaxidermyResearchRoomshort]

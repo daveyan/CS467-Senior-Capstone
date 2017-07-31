@@ -42,15 +42,6 @@ void Room::addEast(int roomId) {
 void Room::addWest(int roomId) {
 	west = roomId;
 }
-/*
-void Room::setShortDesc(string desc) {
-	this->shortDesc = desc;
-}
-
-void Room::setLongDesc(string desc) {
-	this->longDesc = desc;
-}
-*/
 
 void Room::visitRoom() {
 	this->visited = true;

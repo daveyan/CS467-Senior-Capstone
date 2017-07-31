@@ -113,7 +113,9 @@ void Game::play(Game newGame, Room rooms) {
     if (rooms.getId() == 1) {
 
 	    //cout << rooms.getDescription() << endl;
-	    rooms.getDesc(rooms.isVisited(),"general");
+
+	    newGame.rooms[0].getDesc(newGame.rooms[0].isVisited(),"general");
+	    newGame.rooms[0].visitRoom();
     }
 	   
 

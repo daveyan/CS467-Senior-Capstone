@@ -6,6 +6,6 @@ GENERAL BATHROOM LONG
 
 [startgeneralBathroomshort]
 
-GENERAL BATHROOM LONG
+GENERAL BATHROOM SHORT
 
 [endgeneralBathroomshort]

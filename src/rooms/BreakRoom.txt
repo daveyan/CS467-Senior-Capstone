@@ -2,10 +2,10 @@
 
 GENERAL BREAKROOM LONG
 
-[endgeneralBathroomlong]
+[endgeneralBreakRoomlong]
 
 [startgeneralBreakRoomshort]
 
-GENERAL BREAKROOM LONG
+GENERAL BREAKROOM SHORT
 
 [endgeneralBreakRoomshort]

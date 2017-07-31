@@ -55,8 +55,8 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 				while (is_room && token != NULL) {
 					newroom = isRoom(token, newGame, rooms);
 
-					cout << newroom.getName() <<endl;
-					cout << rooms.getName() << endl;
+					//cout << newroom.getName() <<endl;
+					//cout << rooms.getName() << endl;
 
 					if (strcmp(newroom.getName().c_str(), rooms.getName().c_str()) != 0) {
 						is_room = false;
@@ -183,6 +183,9 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
 				newGame->rooms[i].visitRoom();
+
+				
+
 				return newGame->rooms[i];
 			}
 		}
@@ -195,6 +198,9 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
 				newGame->rooms[i].visitRoom();
+
+				
+
 				return newGame->rooms[i];
 			}
 		}
@@ -207,6 +213,8 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
 				newGame->rooms[i].visitRoom();
+
+				
 				return newGame->rooms[i];
 			}
 		}
@@ -219,6 +227,8 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
 				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
 				newGame->rooms[i].visitRoom();
+
+			
 				return newGame->rooms[i];
 			}
 		}

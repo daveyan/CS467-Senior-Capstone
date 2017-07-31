@@ -6,6 +6,6 @@ GENERAL COMPUTERLAB LONG
 
 [startgeneralComputerLabshort]
 
-GENERAL BREAKROOM LONG
+GENERAL BREAKROOM SHORT
 
 [endgeneralComputerLabshort]
