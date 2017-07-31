@@ -17,11 +17,12 @@ private:
     char userInput[256];
     bool isFinished = false;
 public:
-	vector<Room> rooms;
+    vector<Room> rooms;
     void addRoom(Room room);
     void addItem(Item item);
     void addToInventory(int item);
     void removeFromInv(int item);
+    vector<int> getInventory();
     void play(Game newGame, Room rooms);
 };
 

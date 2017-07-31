@@ -29,7 +29,7 @@ using std::malloc;
 * Description: keeps the command prompt active until the game
   ends or the user quits.
 *****/
-void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game newGame, Room rooms, Objects* objects) {
+void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room rooms) {
 	char line[256]; // Array to hold user's entered line
 	int activeGame = 0; // controls the loop
 	int action;
@@ -45,13 +45,13 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game newGame, Roo
 		// Split line into tokens
 		char* token = strtok(line, " ");
 		while (token != NULL) {
-			activeGame = parseLine(token, r_action, o_action, rooms, objects);
+			activeGame = parseLine(token, r_action, o_action, rooms);
 			
 			// If the user entered a room action verb, search for a room name
 			if (activeGame == 1) {
 				is_room = true;
 				while (is_room && token != NULL) {
-					newroom = isRoom(token, newGame, rooms, objects);
+					newroom = isRoom(token, newGame, rooms);
 
 					if (strcmp(newroom.getName().c_str(), rooms.getName().c_str()) != 0) {
 						is_room = false;
@@ -72,12 +72,12 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game newGame, Roo
 			if (activeGame == 2) {
 				is_object = true;
 				while (is_object && token != NULL) {
-					action = isObject(token, objects, rooms);
-					if (action == 2)
+					action = isObject(token, newGame, rooms);
+					if (action == 1)
 						is_object = false;
 					else {
 						token = strtok(NULL, " "); // Find the next token
-						if (token == NULL && action != -1)
+						if (token == NULL && action == 0)
 							cout << "You didn't select an object." << endl;
 					}
 				}
@@ -93,7 +93,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game newGame, Roo
 * Description: Parses the user's command and determines the action
   the game takes via the game engine
 *****/
-int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room rooms, Objects* objects) {
+int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room rooms) {
 
 	int verb = 0;
 	verb = actionType(token, r_action, o_action);
@@ -162,17 +162,17 @@ int actionType(char* token, RoomAction* r_action, ObjectAction* o_action)
   user is given an error message and prompted to choose a room name and 
   returns -1.
 *****/
-Room isRoom(char* token, Game newGame, Room rooms, Objects* objects)
+Room isRoom(char* token, Game* newGame, Room rooms)
 {
 	int direction;
 
 	if (strcmp("North", token) == 0 || strcmp("north", token) == 0) {
 		direction = rooms.getNorth();
 		for (int i = 0; i < 4; i++) {
-			if (newGame.rooms[i].getId() == direction) {
-				cout << "You have moved to the " << newGame.rooms[i].getName().c_str() << endl;
-				cout << newGame.rooms[i].getDescription() << endl;
-				return newGame.rooms[i];
+			if (newGame->rooms[i].getId() == direction) {
+				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
+				cout << newGame->rooms[i].getDescription() << endl;
+				return newGame->rooms[i];
 			}
 		}
 	}
@@ -180,10 +180,10 @@ Room isRoom(char* token, Game newGame, Room rooms, Objects* objects)
 	if (strcmp("South", token) == 0 || strcmp("south", token) == 0) {
 		direction = rooms.getSouth();
 		for (int i = 0; i < 4; i++) {
-			if (newGame.rooms[i].getId() == direction) {
-				cout << "You have moved to the " << newGame.rooms[i].getName().c_str() << endl;
-				cout << newGame.rooms[i].getDescription() << endl;
-				return newGame.rooms[i];
+			if (newGame->rooms[i].getId() == direction) {
+				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
+				cout << newGame->rooms[i].getDescription() << endl;
+				return newGame->rooms[i];
 			}
 		}
 	}
@@ -191,10 +191,10 @@ Room isRoom(char* token, Game newGame, Room rooms, Objects* objects)
 	if (strcmp("East", token) == 0 || strcmp("east", token) == 0) {
 		direction = rooms.getEast();
 		for (int i = 0; i < 4; i++) {
-			if (newGame.rooms[i].getId() == direction) {
-				cout << "You have moved to the " << newGame.rooms[i].getName().c_str() << endl;
-				cout << newGame.rooms[i].getDescription() << endl;
-				return newGame.rooms[i];
+			if (newGame->rooms[i].getId() == direction) {
+				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
+				cout << newGame->rooms[i].getDescription() << endl;
+				return newGame->rooms[i];
 			}
 		}
 	}
@@ -202,10 +202,10 @@ Room isRoom(char* token, Game newGame, Room rooms, Objects* objects)
 	if (strcmp("West", token) == 0 || strcmp("west", token) == 0) {
 		direction = rooms.getWest();
 		for (int i = 0; i < 4; i++) {
-			if (newGame.rooms[i].getId() == direction) {
-				cout << "You have moved to the " << newGame.rooms[i].getName().c_str() << endl;
-				cout << newGame.rooms[i].getDescription() << endl;
-				return newGame.rooms[i];
+			if (newGame->rooms[i].getId() == direction) {
+				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
+				cout << newGame->rooms[i].getDescription() << endl;
+				return newGame->rooms[i];
 			}
 		}
 	}
@@ -223,9 +223,9 @@ object and returns 1. If token matches with an item in rooms array,
 user is given an error message and prompted to choose an object name and
 returns -1.
 *****/
-int isObject(char* token, Objects* objects, Room rooms)
+int isObject(char* token, Game *newGame, Room rooms)
 {
-	for (int i = 0; i < 3; i++) {
+	/*for (int i = 0; i < 3; i++) {
 		if (strcmp(objects->objects[i], token) == 0) {
 			cout << "You have found the " << token << "." << endl;
 			return 2;
@@ -233,7 +233,24 @@ int isObject(char* token, Objects* objects, Room rooms)
 		/*if (strcmp(rooms[i].getName().c_str(), token) == 0) {
 			cout << token << " is not an object.\nPlease enter an object name." << endl;
 			return -1;
-		}*/
+		}
+	}*/
+
+	for (int i = 0; i < rooms.getItems().size(); i++) {
+		//cout << rooms.getItems()[i].getName() << endl;
+		if (rooms.getItems()[i].getId() == 1 && strcmp(token, "Metal") == 0 || strcmp(token, "metal") == 0) {
+			cout << "You've grabbed the " << rooms.getItems()[i].getName() << endl;
+			newGame->addToInventory(rooms.getItems()[i].getId());
+
+			cout << "Your Inventory" << endl;
+			for (int i = 0; i < newGame->getInventory().size(); i++) {
+				cout << newGame->getInventory()[i] << endl;
+			}
+			return 1;
+		}
 	}
+
+
+
 	return 0;
 }

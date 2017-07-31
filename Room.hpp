@@ -3,16 +3,11 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
 
 #include "Item.hpp"
 
 using std::vector;
 using std::string;
-using std::cout;
-using std::endl;
 
 class Room {
 private:
@@ -27,7 +22,6 @@ private:
 	string shortDesc;
 	string longDesc;
 	bool visited;
-	string roomPath;
 public:
 	Room();
 	Room(int id, string name, string shortDesc, string longDesc);
@@ -50,7 +44,6 @@ public:
 	vector<Item> getItems();
 	vector<Item> getDroppedItems();
 	string getDescription();
-	void getDesc(int visit, string command); 
 	bool isVisited();
 };
 

@@ -26,6 +26,10 @@ void Game::removeFromInv(int item) {
     inventory.erase(std::remove(inventory.begin(), inventory.end(), item), inventory.end());
 }
 
+vector<int> Game::getInventory() {
+	return inventory;
+}
+
 void Game::play(Game newGame, Room rooms) {
     // Load room and item files
 
@@ -104,7 +108,7 @@ void Game::play(Game newGame, Room rooms) {
 	    rooms.getDesc(rooms.isVisited(),"general");
     }
 
-    commandLoop(r_action, o_action, newGame, rooms, objects);
+    commandLoop(r_action, o_action, &newGame, rooms);
 
     /*while (!isFinished) {
         cout << "What would you like to do?" << endl;
