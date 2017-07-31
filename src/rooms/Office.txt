@@ -1,0 +1,11 @@
+[startgeneralOfficelong]
+
+GENERAL Office LONG
+
+[endgeneralOfficelong]
+
+[startgeneralOfficeshort]
+
+GENERAL Office SHORT
+
+[endgeneralOfficeshort]

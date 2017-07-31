@@ -1,0 +1,11 @@
+[startgeneralComputerLablong]
+
+GENERAL COMPUTERLAB LONG
+
+[endgeneralComputerLablong]
+
+[startgeneralComputerLabshort]
+
+GENERAL BREAKROOM LONG
+
+[endgeneralComputerLabshort]

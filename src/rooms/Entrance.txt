@@ -1,0 +1,16 @@
+[startgeneralEntrancelong]
+
+GENERAL ENTRANCE LONG
+
+[endgeneralEntrancelong]
+
+
+[startgeneralEntranceshort]
+
+GENERAL ENTRANCE SHORT
+
+[endgeneralEntranceshort]
+
+[startlookEntrancelong]
+LOOK ENTRANCE LONG
+[endlookEntrancelong]

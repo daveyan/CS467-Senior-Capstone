@@ -1,0 +1,11 @@
+[startgeneralBathroomlong]
+
+GENERAL BATHROOM LONG
+
+[endgeneralBathroomlong]
+
+[startgeneralBathroomshort]
+
+GENERAL BATHROOM LONG
+
+[endgeneralBathroomshort]

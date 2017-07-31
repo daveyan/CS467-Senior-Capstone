@@ -1,0 +1,11 @@
+[startgeneralBreakRoomlong]
+
+GENERAL BREAKROOM LONG
+
+[endgeneralBathroomlong]
+
+[startgeneralBreakRoomshort]
+
+GENERAL BREAKROOM LONG
+
+[endgeneralBreakRoomshort]

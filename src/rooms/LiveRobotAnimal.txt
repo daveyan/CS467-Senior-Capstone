@@ -1,0 +1,11 @@
+[startgeneralLiveRobotAnimallong]
+
+GENERAL Live robot animal LONG
+
+[endgeneralLiveRobotAnimallong]
+
+[startgeneralLiveRobotAnimalshort]
+
+GENERAL Live Robot animal SHORT
+
+[endgeneralLiveRobotAnimalshort]

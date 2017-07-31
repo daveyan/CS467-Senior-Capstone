@@ -1,0 +1,11 @@
+[startgeneralRobotAssemblyRoomlong]
+
+GENERAL RobotAssemblyRoom LONG
+
+[endgeneralRobotAssemblyRoomlong]
+
+[startgeneralRobotAssemblyRoomshort]
+
+GENERAL RobotAssemblyRoom SHORT
+
+[endgeneralRobotAssemblyRoomshort]
