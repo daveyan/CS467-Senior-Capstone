@@ -13,7 +13,7 @@ private:
     int curRoom;
     //vector<Room> rooms;
     vector<Item> items;
-    vector<int> inventory;
+    vector<string> inventory;
     char userInput[256];
     bool isFinished = false;
 public:
@@ -22,9 +22,9 @@ public:
     vector<Room> rooms;
     void addRoom(Room room);
     void addItem(Item item);
-    void addToInventory(int item);
-    void removeFromInv(int item);
-    vector<int> getInventory();
+    void addToInventory(string item);
+    void removeFromInv(string item);
+    vector<string> getInventory();
     void play(Game newGame, Room rooms);
 };
 

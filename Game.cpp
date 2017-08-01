@@ -26,15 +26,15 @@ void Game::addItem(Item item) {
     items.push_back(item);
 }
 
-void Game::addToInventory(int item) {
+void Game::addToInventory(string item) {
     inventory.push_back(item);
 }
 
-void Game::removeFromInv(int item) {
+void Game::removeFromInv(string item) {
     inventory.erase(std::remove(inventory.begin(), inventory.end(), item), inventory.end());
 }
 
-vector<int> Game::getInventory() {
+vector<string> Game::getInventory() {
 	return inventory;
 }
 

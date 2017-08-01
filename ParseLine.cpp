@@ -47,7 +47,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 		// Split line into tokens
 		char* token = strtok(line, " ");
 		while (token != NULL) {
-			activeGame = parseLine(token, r_action, o_action, rooms);
+			activeGame = parseLine(token, r_action, o_action, newGame, rooms);
 			
 			// If the user entered a room action verb, search for a room name
 			if (activeGame == 1) {
@@ -99,7 +99,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 * Description: Parses the user's command and determines the action
   the game takes via the game engine
 *****/
-int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room rooms) {
+int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room rooms) {
 
 	int verb = 0;
 	verb = actionType(token, r_action, o_action);
@@ -107,6 +107,20 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Room ro
 	if (verb == 2) return 2; // Check for object action
 
 	else {
+
+		if (strcmp("Inventory", token) == 0 || strcmp("inventory", token) == 0) {
+
+			if (newGame->getInventory().size() == 0)
+				cout << "You have nothing in your inventory." << endl;
+			else {
+				cout << "Your Inventory\n--------------" << endl;
+				for (int i = 0; i < newGame->getInventory().size(); i++) {
+					cout << newGame->getInventory()[i] << endl;
+				}
+			}
+		}
+
+
 		// List keywords for user if they type the command 'help'
 		if (strcmp(token, "help") == 0 || strcmp(token, "Help") == 0) {
 			cout << "Insert help message here..." << endl;
@@ -237,8 +251,8 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 }
 
 /*****
-* Function: int isObject(char* token, Objects* objects, Rooms* rooms)
-* Parameters: char* token, Objects* objects, Rooms* rooms
+* Function: int isObject(char* token, Game *newGame, Rooms rooms)
+* Parameters: char* token, Game* newGame, Rooms rooms
 * Description: if actionType() determines the user entered an object
 action verb, this function searches for an object name. Compares token
 to the contents of the rooms and objects arrays - if token matches
@@ -247,34 +261,38 @@ object and returns 1. If token matches with an item in rooms array,
 user is given an error message and prompted to choose an object name and
 returns -1.
 *****/
-int isObject(char* token, Game *newGame, Room rooms)
+int isObject(char* token, Game* newGame, Room rooms)
 {
-	/*for (int i = 0; i < 3; i++) {
-		if (strcmp(objects->objects[i], token) == 0) {
-			cout << "You have found the " << token << "." << endl;
-			return 2;
-		}
-		/*if (strcmp(rooms[i].getName().c_str(), token) == 0) {
-			cout << token << " is not an object.\nPlease enter an object name." << endl;
-			return -1;
-		}
-	}*/
-
 	for (int i = 0; i < rooms.getItems().size(); i++) {
-		//cout << rooms.getItems()[i].getName() << endl;
-		if (rooms.getItems()[i].getId() == 1 && strcmp(token, "Metal") == 0 || strcmp(token, "metal") == 0) {
-			cout << "You've grabbed the " << rooms.getItems()[i].getName() << endl;
-			newGame->addToInventory(rooms.getItems()[i].getId());
-
-			cout << "Your Inventory" << endl;
-			for (int i = 0; i < newGame->getInventory().size(); i++) {
-				cout << newGame->getInventory()[i] << endl;
+		
+		// Prevent duplicates in inventory
+		for (int i = 0; i < newGame->getInventory().size(); i++) {
+			if (strcmp(newGame->getInventory()[i].c_str(), token) == 0){
+				cout << "You already have the " << newGame->getInventory()[i] << " in your inventory." << endl;
+				
+				return 1;
 			}
+		}
+
+		// Special case - Metal Bar
+		if (strcmp(rooms.getItems()[i].getName().c_str(), "Metal Bar") && strcmp(token, "Metal") == 0 || strcmp(token, "metal") == 0) {
+			cout << "You've grabbed the " << rooms.getItems()[i].getName() << endl;
+			cout << rooms.getItems()[i].getDescription() << endl;
+			newGame->addToInventory(rooms.getItems()[i].getName());
+
+			return 1;
+		}
+
+		// Print Message to user saying they grabbed the item, then print the item's description
+		if (strcmp(rooms.getItems()[i].getName().c_str(), token) == 0) {
+			cout << "You've grabbed the " << rooms.getItems()[i].getName() << endl;
+			cout << rooms.getItems()[i].getDescription() << endl;
+			newGame->addToInventory(rooms.getItems()[i].getName());
+
 			return 1;
 		}
 	}
 
-
-
+	// If no valid object to grab, return 0, prompting "you didn't select object" message for player
 	return 0;
 }
