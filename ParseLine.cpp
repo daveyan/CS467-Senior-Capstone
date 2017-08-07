@@ -177,11 +177,11 @@ int dropItem(char* token, Game* newGame, Room* rooms) {
 		if (strcmp(token, newGame->getInventory()[i].c_str()) == 0) {
 			cout << "You dropped the " << token << " in the " << rooms->getName() << endl;
 
-			// Remove the item from inventory
-			newGame->removeFromInv(newGame->getInventory()[i]);
-
 			// Add item to the new room
 			rooms->addItem(newGame->getInventory()[i]);
+
+			// Remove the item from inventory
+			newGame->removeFromInv(newGame->getInventory()[i]);
 
 			// Testing -- Print the Rooms Inventory
 			cout << rooms->getName() << " inventory:" << endl;
