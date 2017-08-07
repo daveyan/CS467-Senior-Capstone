@@ -26,6 +26,7 @@ public:
     void addToInventory(string item);
     void removeFromInv(string item);
     vector<string> getInventory();
+    void clearInv();
     void play(Game newGame, Room rooms);
 };
 

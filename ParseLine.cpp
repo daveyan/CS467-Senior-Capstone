@@ -101,7 +101,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 			}
 
 			if (activeGame == 5) {
-				std::system("clear");
+				//std::system("clear");
 				cout << ">>> Game Loaded <<<" << endl;
 				
 				newGame->rooms[newGame->getcurRoom()].getDesc(newGame->rooms[newGame->getcurRoom()].isVisited(),"general");
@@ -213,14 +213,19 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 
 			int loadRoomId = std::stoi(loadfileData[0]); 			//line one is current position
 			newGame->setcurRoom(loadRoomId);
+			//cout << "current position" << loadRoomId << endl;
 
 			int numItems = std::stoi(loadfileData[1]);				//line two has number of items in inventory
 
-			newGame->getInventory().clear(); 							//clear all items from inventory
+			//cout << "number of items" << numItems << endl;
 
+			newGame->clearInv(); 							//clear all items from inventory
+
+			//cout <<"cleared inv size" <<newGame->getInventory().size() << endl;
 
 			for (int i = 0; i < numItems; i++){
-				newGame->addToInventory(rooms.getItems()[i].getName());
+			//	cout <<"item added " <<loadfileData[i+2] << endl;
+				newGame->addToInventory(loadfileData[i+2]);
 			}
 
 
@@ -278,7 +283,7 @@ Room isRoom(char* token, Game* newGame, Room rooms)
 {
 	int direction;
 
-	std::system("clear");
+	//std::system("clear");
 	
 	if (strcmp("North", token) == 0 || strcmp("north", token) == 0) {
 		direction = rooms.getNorth();

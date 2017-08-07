@@ -38,6 +38,10 @@ vector<string> Game::getInventory() {
 	return inventory;
 }
 
+void Game::clearInv(){
+	inventory.clear();
+}
+
 void Game::play(Game newGame, Room rooms) {
     // Load room and item files
 
