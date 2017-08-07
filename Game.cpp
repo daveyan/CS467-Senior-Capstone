@@ -38,6 +38,10 @@ vector<string> Game::getInventory() {
 	return inventory;
 }
 
+void Game::clearInv(){
+	inventory.clear();
+}
+
 void Game::play(Game newGame, Room rooms) {
     // Load room and item files
 
@@ -114,8 +118,12 @@ void Game::play(Game newGame, Room rooms) {
 
 	    //cout << rooms.getDescription() << endl;
 
-	    newGame.rooms[0].getDesc(newGame.rooms[0].isVisited(),"general");
-	    newGame.rooms[0].visitRoom();
+		//cout << "[Current Room] ";
+		//cout << newGame.rooms[newGame.getcurRoom()].getName() << endl;
+
+    	newGame.setcurRoom(1); 		//entrance == 1;
+	    newGame.rooms[1].getDesc(newGame.rooms[1].isVisited(),"general");
+	    newGame.rooms[1].visitRoom();
     }
 	   
 

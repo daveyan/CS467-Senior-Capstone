@@ -19,11 +19,13 @@ public:
     int getcurRoom();
     void setcurRoom(int i);
     vector<Room> rooms;
+    vector<Item> allitems; //for loadgame purposes
     void addRoom(Room room);
     void addItem(string item);
     void addToInventory(string item);
     void removeFromInv(string item);
     vector<string> getInventory();
+    void clearInv();
     void play(Game newGame, Room rooms);
 };
 
