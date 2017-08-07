@@ -120,7 +120,7 @@ void Game::play(Game newGame, Room rooms) {
 	   
 
 
-    commandLoop(r_action, o_action, &newGame, rooms);
+    commandLoop(r_action, o_action, &newGame, &rooms);
 
     
 }

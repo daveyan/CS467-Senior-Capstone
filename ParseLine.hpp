@@ -25,8 +25,9 @@ struct Objects {
 };
 
 // Function Prototypes
-int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room rooms);
-void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room rooms);
+int dropItem(char* token, Game* newGame, Room* rooms);
+int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room* rooms);
+void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room* rooms);
 int actionType(char* token, RoomAction* r_action, ObjectAction* o_action);
-Room isRoom(char* token, Game* newGame, Room rooms);
-int isObject(char*token, Game* newGame, Room rooms);
+Room* isRoom(char* token, Game* newGame, Room* rooms);
+int isObject(char*token, Game* newGame, Room* rooms);
