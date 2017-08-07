@@ -32,6 +32,7 @@ private:
     string longDesc;
     string feature1Response;
     string feature2Response;
+    string roomPath;
     bool visited;
 public:
 	Room();

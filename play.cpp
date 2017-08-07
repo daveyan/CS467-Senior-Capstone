@@ -8,9 +8,6 @@ int main() {
 
 	
 	//ALL ITEMS
-	Item metalBar(1, "Metal Bar", "Looks sturdy, like it could be used for leverage");
-	Item keycard(2, "Keycard", "Keycard, probably used to gain access to the facility");
-	Item flashlight(3, "Flashlight", "Used to illuminate the darkness");
 
 
 	Room empty(0,"");
@@ -113,10 +110,10 @@ int main() {
 
 
 	//ADDING ITEMS TO ROOMS
-	entrance.addItem(metalBar);
+	entrance.addItem("metalBar");
 
-	vestibule.addItem(keycard);
-	vestibule.addItem(flashlight);
+	vestibule.addItem("keycard");
+	vestibule.addItem("flashlight");
 	
 	
 	//ADD ROOMS TO NEW GAME
