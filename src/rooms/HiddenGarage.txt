@@ -1,0 +1,11 @@
+[startgeneralHiddenGaragelong]
+
+GENERAL Hidden Garage LONG
+
+[endgeneralHiddenGaragelong]
+
+[startgeneralHiddenGarageshort]
+
+GENERAL Hidden Garage SHORT
+
+[endgeneralHiddenGarageshort]

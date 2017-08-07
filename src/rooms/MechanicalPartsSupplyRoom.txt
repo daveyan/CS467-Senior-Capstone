@@ -1,0 +1,11 @@
+[startgeneralMechanicalPartsSupplyRoomlong]
+
+GENERAL MechanicalPartsSupplyRoom LONG
+
+[endgeneralMechanicalPartsSupplyRoomlong]
+
+[startgeneralMechanicalPartsSupplyRoomshort]
+
+GENERAL MechanicalPartsSupplyRoom SHORT
+
+[endgeneralMechanicalPartsSupplyRoomshort]

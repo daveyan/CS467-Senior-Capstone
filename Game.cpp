@@ -10,6 +10,14 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+int Game::getcurRoom() {
+    return curRoom;
+}
+
+void Game::setcurRoom(int i){
+	curRoom = i;
+}
+
 void Game::addRoom(Room room) {
     rooms.push_back(room);
 }
@@ -18,15 +26,15 @@ void Game::addItem(Item item) {
     items.push_back(item);
 }
 
-void Game::addToInventory(int item) {
+void Game::addToInventory(string item) {
     inventory.push_back(item);
 }
 
-void Game::removeFromInv(int item) {
+void Game::removeFromInv(string item) {
     inventory.erase(std::remove(inventory.begin(), inventory.end(), item), inventory.end());
 }
 
-vector<int> Game::getInventory() {
+vector<string> Game::getInventory() {
 	return inventory;
 }
 
@@ -35,7 +43,7 @@ void Game::play(Game newGame, Room rooms) {
 
 
     /* For testing -- not to be used in final version */
-	char rAction[8][100] = {
+	char rAction[10][100] = {
 		"move",
 		"Move",
 		"go",
@@ -105,24 +113,18 @@ void Game::play(Game newGame, Room rooms) {
     if (rooms.getId() == 1) {
 
 	    //cout << rooms.getDescription() << endl;
-	    rooms.getDesc(rooms.isVisited(),"general");
+
+		//cout << "[Current Room] ";
+		//cout << newGame.rooms[newGame.getcurRoom()].getName() << endl;
+
+    	newGame.setcurRoom(1); 		//entrance == 1;
+	    newGame.rooms[1].getDesc(newGame.rooms[1].isVisited(),"general");
+	    newGame.rooms[1].visitRoom();
     }
+	   
+
 
     commandLoop(r_action, o_action, &newGame, rooms);
 
-    /*while (!isFinished) {
-        cout << "What would you like to do?" << endl;
-        memset(userInput, '\0', 256);
-        cin.getline(userInput, 255);
-
-        //temporary "look" without parser
-        if(strstr(userInput,look)){
-        	rooms[0].getDescription(rooms[0].isVisited(),look);
-        }
-
-        // Implement parser
-        if (strstr(userInput, exit)) {
-            isFinished = true;
-        }
-    }*/
+    
 }

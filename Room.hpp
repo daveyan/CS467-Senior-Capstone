@@ -3,9 +3,14 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
+#include <fstream>
 
 #include "Item.hpp"
 
+using std::cout;
+using std::endl;
 using std::vector;
 using std::string;
 
@@ -19,20 +24,19 @@ private:
 	int south;
 	int east;
 	int west;
-	string shortDesc;
-	string longDesc;
+	string roomPath;
+	//string shortDesc;
+	//string longDesc;
 	bool visited;
 public:
 	Room();
-	Room(int id, string name, string shortDesc, string longDesc);
+	Room(int id, string name);
 	void setId(int id);
 	void setName(string name);
 	void addNorth(int roomId);
 	void addSouth(int roomId);
 	void addEast(int roomId);
 	void addWest(int roomId);
-	void setShortDesc(string desc);
-	void setLongDesc(string desc);
 	void visitRoom();
 	void addItem(Item item);
 	int getId();
@@ -43,7 +47,7 @@ public:
 	string getName();
 	vector<Item> getItems();
 	vector<Item> getDroppedItems();
-	string getDescription();
+	void getDesc(bool visit,string userCommand);
 	bool isVisited();
 };
 

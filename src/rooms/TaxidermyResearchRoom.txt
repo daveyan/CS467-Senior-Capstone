@@ -1,0 +1,11 @@
+[startgeneralTaxidermyResearchRoomlong]
+
+GENERAL TaxidermyResearchRoom LONG
+
+[endgeneralTaxidermyResearchRoomlong]
+
+[startgeneralTaxidermyResearchRoomshort]
+
+GENERAL TaxidermyResearchRoom SHORT
+
+[endgeneralTaxidermyResearchRoomshort]

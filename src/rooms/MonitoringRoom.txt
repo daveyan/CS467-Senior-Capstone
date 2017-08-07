@@ -1,0 +1,11 @@
+[startgeneralMonitoringRoomlong]
+
+GENERAL MonitoringRoom LONG
+
+[endgeneralMonitoringRoomlong]
+
+[startgeneralMonitoringRoomshort]
+
+GENERAL MonitoringRoom SHORT
+
+[endgeneralMonitoringRoomshort]

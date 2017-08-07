@@ -1,0 +1,11 @@
+[startgeneralMechanicalRoomlong]
+
+GENERAL MECHANICAL ROOM LONG
+
+[endgeneralMechanicalRoomlong]
+
+[startgeneralMechanicalRoomshort]
+
+GENERAL MECHANICAL ROOM SHORT
+
+[endgeneralMechanicalRoomshort]
