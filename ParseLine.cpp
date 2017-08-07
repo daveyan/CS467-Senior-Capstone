@@ -216,6 +216,9 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 
 			int numItems = std::stoi(loadfileData[1]);				//line two has number of items in inventory
 
+			newGame->getInventory().clear; 							//clear all items from inventory
+
+			
 			for (int i = 0; i < numItems; i++){
 				newGame->addToInventory(rooms.getItems()[i].getName());
 			}
