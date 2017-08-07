@@ -22,7 +22,7 @@ void Game::addRoom(Room room) {
     rooms.push_back(room);
 }
 
-void Game::addItem(Item item) {
+void Game::addItem(string item) {
     items.push_back(item);
 }
 

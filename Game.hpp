@@ -11,8 +11,7 @@ using std::string;
 class Game {
 private:
     int curRoom;
-    //vector<Room> rooms;
-    vector<Item> items;
+    vector<string> items;
     vector<string> inventory;
     char userInput[256];
     bool isFinished = false;
@@ -21,7 +20,7 @@ public:
     void setcurRoom(int i);
     vector<Room> rooms;
     void addRoom(Room room);
-    void addItem(Item item);
+    void addItem(string item);
     void addToInventory(string item);
     void removeFromInv(string item);
     vector<string> getInventory();

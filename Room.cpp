@@ -43,12 +43,36 @@ void Room::addWest(int roomId) {
 	west = roomId;
 }
 
+void Room::setNorthExitStatus(int status) {
+    northExitStatus = status;
+}
+
+void Room::setSouthExitStatus(int status) {
+    southExitStatus = status;
+}
+
+void Room::setEastExitStatus(int status) {
+    eastExitStatus = status;
+}
+
+void Room::setWestExitStatus(int status) {
+    westExitStatus = status;
+}
+
+void Room::setShortDesc(string desc) {
+    this->shortDesc = desc;
+}
+
+void Room::setLongDesc(string desc) {
+    this->longDesc = desc;
+}
+
 void Room::visitRoom() {
 	this->visited = true;
 }
 
-void Room::addItem(Item item) {
-	items.push_back(item);
+void Room::addItem(string item) {
+    items.push_back(item);
 }
 
 int Room::getId() {
@@ -71,18 +95,50 @@ int Room::getWest() {
 	return west;
 }
 
+string Room::getNorthExitStatus() {
+    return northExitStatus;
+}
+
+string Room::getSouthExitStatus() {
+    return southExitStatus;
+}
+
+string Room::getEastExitStatus() {
+    return eastExitStatus;
+}
+
+string Room::getWestExitStatus() {
+    return westExitStatus;
+}
+
 string Room::getName() {
 	return name;
 }
 
-vector<Item> Room::getItems() {
-	return items;
+vector<string> Room::getItems() {
+    return items;
 }
 
-vector<Item> Room::getDroppedItems() {
-	return itemsDropped;
+vector<string> Room::getDroppedItems() {
+    return itemsDropped;
 }
 
+string Room::getDescription() {
+    if (!visited) {
+        visited = true;
+        return longDesc;
+    } else {
+        return shortDesc;
+    }
+}
+
+string Room::getFeature1Response() {
+    return feature1Response;
+}
+
+string Room::getFeature2Response() {
+    return feature2Response;
+}
 
 bool Room::isVisited() {
 	return visited;
