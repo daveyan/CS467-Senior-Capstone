@@ -7,6 +7,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "ParseLine.hpp"
 #include "Game.hpp"
+#include "Room.hpp"
 #include "Item.hpp"
 #include <iostream>
 #include <string>
@@ -16,6 +17,7 @@
 #include <istream>
 #include <sstream>
 #include <algorithm>
+#include <fstream>
 
 using std::cin;
 using std::cout;
@@ -24,6 +26,10 @@ using std::string;
 using std::istream;
 using std::getline;
 using std::malloc;
+using std::ifstream;
+using std::ofstream;
+
+using std::swap;
 
 /*****
 * Function: void commandLoop(RoomAction* r_action, ObjectAction* o_action, Rooms* rooms, Objects* objects)
@@ -39,7 +45,12 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 
 	bool is_room = false, is_object = false; // flags to control search
 
+	
 	while (activeGame != -1) {
+
+		cout << "[Current Room] ";
+		cout << newGame->rooms[newGame->getcurRoom()].getName() << endl;
+
 		memset(line, '\0', sizeof(line)); // Clear the array
 		cout << "Enter line: ";
 		cin.getline(line, 255); // Get input
@@ -54,6 +65,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 				is_room = true;
 				while (is_room && token != NULL) {
 					newroom = isRoom(token, newGame, rooms);
+					newGame->setcurRoom(newroom.getId());
 
 					//cout << newroom.getName() <<endl;
 					//cout << rooms.getName() << endl;
@@ -86,6 +98,33 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 							cout << "You didn't select an object." << endl;
 					}
 				}
+			}
+
+			if (activeGame == 5) {
+				std::system("clear");
+				cout << ">>> Game Loaded <<<" << endl;
+				
+				newGame->rooms[newGame->getcurRoom()].getDesc(newGame->rooms[newGame->getcurRoom()].isVisited(),"general");
+				newGame->rooms[newGame->getcurRoom()].visitRoom();
+
+
+				is_room = true;
+				while (is_room && token != NULL) {
+					newroom = newGame->rooms[newGame->getcurRoom()];
+					newGame->setcurRoom(newroom.getId());
+
+					//cout << newroom.getName() <<endl;
+					//cout << rooms.getName() << endl;
+
+					if (strcmp(newroom.getName().c_str(), rooms.getName().c_str()) != 0) {
+						is_room = false;
+						rooms = newroom;
+					}
+					
+				}
+
+
+
 			}
 
 			token = strtok(NULL, " "); // Find the next token
@@ -129,13 +168,61 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 
 		// Save game
 		if (strcmp(token, "savegame") == 0 || strcmp(token, "Savegame") == 0) {
+
 			cout << "Savegame logic here..." << endl;
+			ofstream savefile;
+			savefile.open ("savegame.txt");
+			//write players position
+			savefile << newGame->getcurRoom() << endl;
+			//savefile <<"\n";
+			//write number of items in inventory
+			savefile << newGame->getInventory().size() << endl;
+			for (int i = 0; i < newGame->getInventory().size();i++){
+				savefile << newGame->getInventory()[i] << endl;
+			}
+
+
+			//GETTING THE ITEMS IN THE ROOM - NOT NECESSARY? 
+			/*
+			for(int i = 0; i < newGame->rooms.size();i++){
+				savefile << newGame->rooms[i].getName() + "\n";
+
+				for(int j = 0; j < newGame->rooms[i].getItems().size(); j++){
+					savefile << newGame->rooms[i].getItems()[j].getName() + "\n";
+				}
+				
+			}
+			*/
+			savefile.close();
+
+
 			return 4;
 		}
 
 		// Load game
 		if (strcmp(token, "loadgame") == 0 || strcmp(token, "Loadgame") == 0) {
 			cout << "Loadgame logic here..." << endl;
+			ifstream loadfile;
+			loadfile.open ("savegame.txt");
+			vector<string> loadfileData;
+			string s;
+			int data;
+			while(std::getline(loadfile,s)){
+				loadfileData.push_back(s);
+			}
+
+			int loadRoomId = std::stoi(loadfileData[0]); 			//line one is current position
+			newGame->setcurRoom(loadRoomId);
+
+			int numItems = std::stoi(loadfileData[1]);				//line two has number of items in inventory
+
+			for (int i = 0; i < numItems; i++){
+				newGame->addToInventory(rooms.getItems()[i].getName());
+			}
+
+
+			
+			
 			return 5;
 		}
 
@@ -288,6 +375,7 @@ int isObject(char* token, Game* newGame, Room rooms)
 			cout << "You've grabbed the " << rooms.getItems()[i].getName() << endl;
 			cout << rooms.getItems()[i].getDescription() << endl;
 			newGame->addToInventory(rooms.getItems()[i].getName());
+			
 
 			return 1;
 		}

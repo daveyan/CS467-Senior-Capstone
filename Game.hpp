@@ -20,6 +20,7 @@ public:
     int getcurRoom();
     void setcurRoom(int i);
     vector<Room> rooms;
+    vector<Item> allitems; //for loadgame purposes
     void addRoom(Room room);
     void addItem(Item item);
     void addToInventory(string item);
