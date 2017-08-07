@@ -31,10 +31,22 @@ int main() {
 	newGame.allitems.push_back(a);
 	newGame.allitems.push_back(b);
 	newGame.allitems.push_back(c);
+	newGame.allitems.push_back(d);
+	newGame.allitems.push_back(e);
+	newGame.allitems.push_back(f);
+	newGame.allitems.push_back(g);
+	newGame.allitems.push_back(h);
+	newGame.allitems.push_back(i);
+	newGame.allitems.push_back(j);
+	newGame.allitems.push_back(k);
+	newGame.allitems.push_back(l);
+	newGame.allitems.push_back(m);
+	newGame.allitems.push_back(n);
+	newGame.allitems.push_back(o);
 
 
 
-	Room empty(0,"");
+	//Room empty(0,"");
 
 	//ALL ROOMS	
 	Room entrance(1, "Entrance");
@@ -153,7 +165,7 @@ int main() {
 	
 	
 	//ADD ROOMS TO NEW GAME
-	newGame.addRoom(empty);
+	//newGame.addRoom(empty);
 	newGame.addRoom(entrance); 					//1
 	newGame.addRoom(vestibule);					//2	
 	newGame.addRoom(mechanicalRoom);			//3
