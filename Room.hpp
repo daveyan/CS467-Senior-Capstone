@@ -61,6 +61,7 @@ public:
     string getEastExitStatus();
     string getWestExitStatus();
 	string getName();
+    void removeItem(string item);
 	vector<string> getItems();
     vector<string> getDroppedItems();
 	void getDesc(bool visit,string userCommand);

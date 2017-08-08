@@ -115,6 +115,10 @@ string Room::getName() {
 	return name;
 }
 
+void Room::removeItem(string item) {
+    items.erase(std::remove(items.begin(), items.end(), item), items.end());
+}
+
 vector<string> Room::getItems() {
     return items;
 }

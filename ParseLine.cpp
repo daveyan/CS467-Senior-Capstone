@@ -41,6 +41,10 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 	char line[256]; // Array to hold user's entered line
 	int activeGame = 0; // controls the loop
 	int action;
+
+	// Ensure the rooms use the appropriate memory address
+	rooms = &newGame->rooms[0];
+	
 	Room* newroom = rooms;
 
 	bool is_room = false, is_object = false; // flags to control search
@@ -264,6 +268,20 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 	return 0;
 }
 
+/*****
+* Function: int dropItem(char* token, Game* newGame, Room* rooms)
+* Parameters: char* token, Game* newGame, Room* rooms
+* Description: Takes a token, pointer to a Game object, and a pointer to a Room object as 
+  parameters. From the command line, if the player enters the command "Drop" or "drop",
+  dropItem() is called until either a token representing an item matching an item in the
+  player's inventory is passed in, or until no matches between the token and player's
+  inventory are found. If a match is found, the item is fist added to the Room object's 
+  vector of items, then the item is removed from the Game object's vector of items, which
+  represents the player's inventory. 1 is returned, signalling a successful drop. If no
+  matches are found, (i.e. the player doesn't have the item in their inventory), 0 is
+  returned, signalling a failure to drop an item, and 0 is returned, prompting an error
+  message to print.
+*****/
 int dropItem(char* token, Game* newGame, Room* rooms) {
 	
 	// Search inventory for item to drop
