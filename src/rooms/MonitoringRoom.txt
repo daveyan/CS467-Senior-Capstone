@@ -1,11 +1,15 @@
-[startgeneralMonitoringRoomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL MonitoringRoom LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralMonitoringRoomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralMonitoringRoomshort]
-
-GENERAL MonitoringRoom SHORT
-
-[endgeneralMonitoringRoomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

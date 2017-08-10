@@ -1,11 +1,15 @@
-[startgeneralRobotAssemblyRoomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL RobotAssemblyRoom LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralRobotAssemblyRoomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralRobotAssemblyRoomshort]
-
-GENERAL RobotAssemblyRoom SHORT
-
-[endgeneralRobotAssemblyRoomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

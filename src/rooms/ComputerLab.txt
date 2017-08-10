@@ -1,11 +1,15 @@
-[startgeneralComputerLablong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL COMPUTERLAB LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralComputerLablong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralComputerLabshort]
-
-GENERAL BREAKROOM SHORT
-
-[endgeneralComputerLabshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

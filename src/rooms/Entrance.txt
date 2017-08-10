@@ -1,16 +1,15 @@
-[startgeneralEntrancelong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL ENTRANCE LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralEntrancelong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-
-[startgeneralEntranceshort]
-
-GENERAL ENTRANCE SHORT
-
-[endgeneralEntranceshort]
-
-[startlookEntrancelong]
-LOOK ENTRANCE LONG
-[endlookEntrancelong]
+[startFeature2]
+FEATURE 2
+[endFeature2]

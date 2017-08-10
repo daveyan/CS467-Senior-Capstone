@@ -1,11 +1,15 @@
-[startgeneralLoungelong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL LOUNGE LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralLoungelong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralLoungeshort]
-
-GENERAL LOUNGE SHORT
-
-[endgeneralLoungeshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

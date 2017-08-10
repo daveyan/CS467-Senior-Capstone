@@ -1,11 +1,15 @@
-[startgeneralOfficelong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL Office LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralOfficelong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralOfficeshort]
-
-GENERAL Office SHORT
-
-[endgeneralOfficeshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

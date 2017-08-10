@@ -1,11 +1,15 @@
-[startgeneralBreakRoomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL BREAKROOM LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralBreakRoomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralBreakRoomshort]
-
-GENERAL BREAKROOM SHORT
-
-[endgeneralBreakRoomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

@@ -1,11 +1,15 @@
-[startgeneralBathroomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL BATHROOM LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralBathroomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralBathroomshort]
-
-GENERAL BATHROOM SHORT
-
-[endgeneralBathroomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

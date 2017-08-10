@@ -1,11 +1,15 @@
-[startgeneralLiveRobotAnimalslong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL Live robot animal LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralLiveRobotAnimalslong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralLiveRobotAnimalsshort]
-
-GENERAL Live Robot animal SHORT
-
-[endgeneralLiveRobotAnimalsshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

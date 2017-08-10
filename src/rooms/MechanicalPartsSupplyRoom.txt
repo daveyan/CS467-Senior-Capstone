@@ -1,11 +1,15 @@
-[startgeneralMechanicalPartsSupplyRoomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL MechanicalPartsSupplyRoom LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralMechanicalPartsSupplyRoomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralMechanicalPartsSupplyRoomshort]
-
-GENERAL MechanicalPartsSupplyRoom SHORT
-
-[endgeneralMechanicalPartsSupplyRoomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

@@ -1,11 +1,15 @@
-[startgeneralMockForestlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL MockForest LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralMockForestlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralMockForestshort]
-
-GENERAL MockForest SHORT
-
-[endgeneralMockForestshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

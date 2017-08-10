@@ -1,11 +1,15 @@
-[startgeneralHiddenGaragelong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL Hidden Garage LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralHiddenGaragelong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralHiddenGarageshort]
-
-GENERAL Hidden Garage SHORT
-
-[endgeneralHiddenGarageshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

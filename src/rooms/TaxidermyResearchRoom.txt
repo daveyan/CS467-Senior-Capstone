@@ -1,11 +1,15 @@
-[startgeneralTaxidermyResearchRoomlong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL TaxidermyResearchRoom LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralTaxidermyResearchRoomlong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralTaxidermyResearchRoomshort]
-
-GENERAL TaxidermyResearchRoom SHORT
-
-[endgeneralTaxidermyResearchRoomshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]

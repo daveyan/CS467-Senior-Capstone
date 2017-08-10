@@ -1,11 +1,15 @@
-[startgeneralVestibulelong]
+[startlong]
+LONG
+[endlong]
 
-GENERAL VESTIBULE LONG
+[startshort]
+SHORT
+[endshort]
 
-[endgeneralVestibulelong]
+[startFeature1]
+FEATURE 1
+[endFeature1]
 
-[startgeneralVestibuleshort]
-
-GENERAL VESTIBULE SHORT
-
-[endgeneralVestibuleshort]
+[startFeature2]
+FEATURE 2
+[endFeature2]
