@@ -1,15 +1,24 @@
 [startlong]
-LONG
+Environment setup for testing. It is designed to mimic the outdoors beyond the lab. This is a gymnasium-sized room with low lighting, imitation trees, and the sounds of the forest playing on a speaker. You hear a tiny squeaking sound, and see a [chipmunk] by your feet. To the west is the live mechanical animals room that you came from. There is a path through the mock forest, and along the path a short ways into the forest, you can see what looks like a [note book].
 [endlong]
 
 [startshort]
-SHORT
+Large room with a fake forest environment setup for testing. You see a chipmunk and a notebook. To the west is the live mechanical animals room. 
 [endshort]
 
 [startFeature1]
-FEATURE 1
+The chipmunk’s head turns robotically and his eyes appear to be zooming in and out while gazing at your face.
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+Inside the notebook you see a {post it} with a passcode written on it. This could come in handy...
 [endFeature2]
+
+[startExitWest]
+13
+[endExitWest]
+
+[startItem]
+post it
+[endItem]
+

@@ -1,15 +1,47 @@
 [startlong]
-LONG
+Lab where AI programming and research was done. There are [whiteboard]s with what looks like advanced algorithms written on them. There are two long rows of computers, with 4 computers on each row with a [notepad] next to the nearest computer. The computers look unfamiliar, yet technologically superior. To the east is a closed door. You hear loud sounds coming from behind it and a danger symbol on the door, so it would be best to be equipped with protective gear. To the west you see an open door, and through it you see what look like two owls, but there is no movement. To the north you see a closed door labeled Observation Room. There’s is a key pad above the handle to open it (maybe the passcode is around here somewhere…). To the south is the lounge you just came from.
 [endlong]
 
 [startshort]
-SHORT
+Computer lab with algorithms written on [whiteboards]. Eight total computers of advanced technology, a [notepad] is by one of them. To the east is a door leading to a dangerous room. To the west is a room containing taxidermied animals. To the north is the Observation Room.
 [endshort]
 
 [startFeature1]
-FEATURE 1
+You see that the algorithms are AI algorithms; on one of the whiteboards a researcher wrote that the owl’s AI has become too advanced and they can’t be controlled. You learn that mechanical owls were being designed in an attempt to spy on people.
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+you see a note that someone had left saying the owls have taken control of themselves and attacked people in the wild. We should escape now!
 [endFeature2]
+
+[startExitNorth]
+15
+[endExitNorth]
+
+[startExitSouth]
+5
+[endExitSouth]
+
+[startExitEast]
+10
+[endExitEast]
+
+[startExitWest]
+13
+[endExitWest]
+
+[startExitNorthCond]
+post it
+[endExitNorth]
+
+[startExitEastCond]
+hard hat
+[endExitEastCond]
+
+[startFeature1Key]
+Whiteboard
+[endFeature1Key]
+
+[startFeature2Key]
+notepad
+[endFeature2Key]

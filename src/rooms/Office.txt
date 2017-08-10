@@ -1,15 +1,23 @@
 [startlong]
-LONG
+A single desk with a computer. Two tall filing cabinets against the walls. You also see a [mini fridge]. You see financial documents pertaining to how much money is being spent on their ongoing projects - 10 million dollars are spy research on avian spy research. There are also [document] sticking out of one of the filing cabinets that has TOP SECRET written on it. To the west is the lounge you came from.
 [endlong]
 
 [startshort]
-SHORT
+Office with filing cabinets and mini frig. You also see documents detailing the operations of the facility. To the west is the lounge you came from. 
 [endshort]
 
 [startFeature1]
-FEATURE 1
+there are documents that discuss robotic avians being used for spying. A top secret {file} goes over all the details. This seems like something people might want to know about.
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+The power has been off so the food is no longer good, but you drink a Dr Pepper. Refreshing.
 [endFeature2]
+
+[startExitWest]
+5
+[endExitWest]
+
+[startItem]
+file
+[endItem]

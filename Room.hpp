@@ -33,6 +33,8 @@ private:
     string feature1Response;
     string feature2Response;
     string roomPath;
+    string feature1Key;
+    string feature2Key;
     bool visited;
 public:
 	Room();
@@ -71,6 +73,10 @@ public:
     string getFeature2Response();
     void setFeature1Response(string resp);
     void setFeature2Response(string resp);
+    void setFeature1Key(string key);
+    void setFeature2Key(string key);
+    string getFeature1Key();
+    string getFeature2Key();
 	bool isVisited();
 };
 

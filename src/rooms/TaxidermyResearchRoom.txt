@@ -1,15 +1,33 @@
 [startlong]
-LONG
+Research room where mechanical animals are being designed. It appears that taxidermied animals were used in their models to guide the design in the shape and size of the animals. A regal [owl] statue is placed prominently on a nearby desk. It is in an attack pose, as if it is hunting down a rabbit. There are also [schematic]s for different designs of mechanical animals.
 [endlong]
 
 [startshort]
-SHORT
+Research room with taxidermied animals. A large taxidermied owl is in an attack pose. There are also schematics on desks. To the east is the computer lab you came from. To the west you see a room full of mechanical parts, and machinery to assemble them.
 [endshort]
 
 [startFeature1]
-FEATURE 1
+You see designs for different kinds of birds. How many of the birds in the nearby forest are real?
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+You notice the large wing span of the owls, and feel the sharp talons. If the owls were attacking people, the talons must be responsible for causing the head injuries in the victims.
 [endFeature2]
+
+[startExitEast]
+9
+[endExitEast]
+
+[startExitWest]
+11
+[endExitWest]
+
+[startFeature1Key]
+schematics
+[endFeature1Key]
+
+[startFeature2Key]
+owl
+[endFeature2Key]
+
+

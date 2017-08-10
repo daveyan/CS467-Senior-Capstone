@@ -157,7 +157,21 @@ void Room::setFeature2Response(string resp) {
     feature2Response = resp;
 }
 
+void Room::setFeature1Key(string key) {
+    feature1Key = key;
+}
 
+void Room::setFeature2Key(string key) {
+    feature2Key = key;
+}
+
+string getFeature1Key() {
+    return feature1Key;
+}
+
+string getFeature2Key() {
+    return feature2Key;
+}
 
 bool Room::isVisited() {
 	return visited;

@@ -1,15 +1,40 @@
 [startlong]
-LONG
+This appears to be where vehicles drive into. Right now there are two jeeps in here. At the end of the garage is a large door that is currently closed. There is probably camouflage on the outside of this door just like there was on the outside of the facility entrance.  There are logos are the doors of [jeep]s; it is the national park service logo again. This facility is seeming too weird to belong to them. Off to the right side looks like a storage area, with a rack of boxed up [documents].
 [endlong]
 
 [startshort]
-SHORT
+There are a couple of [jeep]s in here. They have a familiar logo on them. There are also boxes of stored [documents] on the right wall.
 [endshort]
 
 [startFeature1]
-FEATURE 1
+One of the jeeps has door that is slightly open. The keys are in the jeep, but with the door closed, there wouldn’t be a way to leave.  You also see a {key card} inside. Maybe it is used to go through the door to the north of the entryway.
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+FIncludes pictures of animals you see around the park, but they have mechanical parts implanted in them. Are they implants though?
 [endFeature2]
+
+[startExitWest]
+3
+[endExitWest]
+
+[startExitEast]
+99
+[endExitEast]
+
+[startItem]
+keycard
+[endItem]
+
+[startExitEastCond]
+garage door opener
+[endExitEastCond]
+
+[startFeature1Key]
+jeep
+[endFeature1Key]
+
+[startFeature2Key]
+documents
+[endFeature2Key]
+

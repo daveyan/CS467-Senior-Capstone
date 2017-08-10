@@ -1,15 +1,47 @@
 [startlong]
-VESTIBULE LONG
+Small entryway that leads. There are [locker]s on both sides of the walls, with benches in between. To the left is a door labeled [utility closet]. It is dark inside except for the light coming in from the door you just pried open. One of the lockers appears to be slightly open. To the east you see a door that is slightly open; a foul, rotten smell is emanating through the crack. Above the door you see a sign that reads Mechanical Room. It looks too dark to enter. To the north you see a closed door labeled Lounge, and what looks like a keycard reader next to the door.
 [endlong]
 
 [startshort]
-VESTIBULE SHORT
+Small vestibule with [locker]s on either side, and a [utility closet] to the left. One locker is slightly opened. To the east is the mechanical room, and to the north is the lounge.
 [endshort]
 
 [startFeature1]
-VESTIBULE FEATURE 1
+You see a jacket, pair of boots, some personal belongings. The jacket has the national park emblem on it. Is this a secret facility for the park service?
 [endFeature1]
 
 [startFeature2]
-VESTIBULE FEATURE 2
+various supplies such as a first aid kit and a {flashlight}.
 [endFeature2]
+
+[startItem]
+flashlight
+[endItem]
+
+[startExitNorth]
+5
+[endExitNorth]
+
+[startExitSouth]
+1
+[endExitSouth]
+
+[startExitEast]
+3
+[endExitEast]
+
+[startExitNorthCond]
+key card
+[endExitNorthCond]
+
+[startExitEastCond]
+key card
+[endExitEastCond]
+
+[startFeature1Key]
+locker
+[endFeature1Key]
+
+[startFeature2Key]
+utility closet
+[endFeature2Key]
