@@ -41,10 +41,6 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 	char line[256]; // Array to hold user's entered line
 	int activeGame = 0; // controls the loop
 	int action;
-
-	// Ensure the rooms use the appropriate memory address
-	rooms = &newGame->rooms[0];
-	
 	Room* newroom = rooms;
 
 	bool is_room = false, is_object = false; // flags to control search
@@ -108,7 +104,8 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 				//std::system("clear");
 				cout << ">>> Game Loaded <<<" << endl;
 				
-				newGame->rooms[newGame->getcurRoom()].getDesc(newGame->rooms[newGame->getcurRoom()].isVisited(),"general");
+				//newGame->rooms[newGame->getcurRoom()].getDesc(newGame->rooms[newGame->getcurRoom()].isVisited(),"general");
+				newGame->rooms[newGame->getcurRoom()].getDescription();
 				newGame->rooms[newGame->getcurRoom()].visitRoom();
 
 
@@ -186,7 +183,7 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 		// Save game
 		if (strcmp(token, "savegame") == 0 || strcmp(token, "Savegame") == 0) {
 
-			cout << "Savegame logic here..." << endl;
+			cout << ">>> Game Saved <<<" << endl;
 			ofstream savefile;
 			savefile.open ("savegame.txt");
 			//write players position
@@ -230,18 +227,11 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 
 			int loadRoomId = std::stoi(loadfileData[0]); 			//line one is current position
 			newGame->setcurRoom(loadRoomId);
-			//cout << "current position" << loadRoomId << endl;
-
 			int numItems = std::stoi(loadfileData[1]);				//line two has number of items in inventory
-
-			//cout << "number of items" << numItems << endl;
-
 			newGame->clearInv(); 							//clear all items from inventory
 
-			//cout <<"cleared inv size" <<newGame->getInventory().size() << endl;
-
+			
 			for (int i = 0; i < numItems; i++){
-			//	cout <<"item added " <<loadfileData[i+2] << endl;
 				newGame->addToInventory(loadfileData[i+2]);
 			}
 
@@ -268,20 +258,6 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 	return 0;
 }
 
-/*****
-* Function: int dropItem(char* token, Game* newGame, Room* rooms)
-* Parameters: char* token, Game* newGame, Room* rooms
-* Description: Takes a token, pointer to a Game object, and a pointer to a Room object as 
-  parameters. From the command line, if the player enters the command "Drop" or "drop",
-  dropItem() is called until either a token representing an item matching an item in the
-  player's inventory is passed in, or until no matches between the token and player's
-  inventory are found. If a match is found, the item is fist added to the Room object's 
-  vector of items, then the item is removed from the Game object's vector of items, which
-  represents the player's inventory. 1 is returned, signalling a successful drop. If no
-  matches are found, (i.e. the player doesn't have the item in their inventory), 0 is
-  returned, signalling a failure to drop an item, and 0 is returned, prompting an error
-  message to print.
-*****/
 int dropItem(char* token, Game* newGame, Room* rooms) {
 	
 	// Search inventory for item to drop
@@ -349,10 +325,14 @@ Room* isRoom(char* token, Game* newGame, Room* rooms){
 		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
-				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
-				newGame->rooms[i].visitRoom();
+				if(newGame->rooms[i].isVisited() == false){
+					cout << newGame->rooms[i].getLongDesc() << endl;;
+					newGame->rooms[i].visitRoom();
+				}
+				else{
+					cout << newGame->rooms[i].getShortDesc() << endl;	
+				}
 
-				
 
 				return &(newGame->rooms[i]);
 			}
@@ -364,8 +344,13 @@ Room* isRoom(char* token, Game* newGame, Room* rooms){
 		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
-				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
-				newGame->rooms[i].visitRoom();
+				if(newGame->rooms[i].isVisited() == false){
+					cout << newGame->rooms[i].getLongDesc() << endl;;
+					newGame->rooms[i].visitRoom();
+				}
+				else{
+					cout << newGame->rooms[i].getShortDesc() << endl;	
+				}
 
 				
 
@@ -379,8 +364,15 @@ Room* isRoom(char* token, Game* newGame, Room* rooms){
 		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
-				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
-				newGame->rooms[i].visitRoom();
+				if(newGame->rooms[i].isVisited() == false){
+					cout << newGame->rooms[i].getLongDesc() << endl;;
+					newGame->rooms[i].visitRoom();
+				}
+				else{
+					cout << newGame->rooms[i].getShortDesc() << endl;	
+				}
+
+
 
 				
 				return &(newGame->rooms[i]);
@@ -393,8 +385,13 @@ Room* isRoom(char* token, Game* newGame, Room* rooms){
 		for (int i = 0; i < 15; i++) {
 			if (newGame->rooms[i].getId() == direction) {
 				cout << "You have moved to the " << newGame->rooms[i].getName().c_str() << endl;
-				newGame->rooms[i].getDesc(newGame->rooms[i].isVisited(),"general");
-				newGame->rooms[i].visitRoom();
+				if(newGame->rooms[i].isVisited() == false){
+					cout << newGame->rooms[i].getLongDesc() << endl;;
+					newGame->rooms[i].visitRoom();
+				}
+				else{
+					cout << newGame->rooms[i].getShortDesc() << endl;	
+				}
 
 			
 				return &(newGame->rooms[i]);

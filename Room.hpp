@@ -49,7 +49,9 @@ public:
     void setWestExitStatus(int status);
     void setShortDesc(string desc);
     void setLongDesc(string desc);
-	void visitRoom();
+    string getShortDesc();
+    string getLongDesc();
+    void visitRoom();
 	void addItem(string item);
 	int getId();
 	int getNorth();
@@ -61,13 +63,14 @@ public:
     string getEastExitStatus();
     string getWestExitStatus();
 	string getName();
-    void removeItem(string item);
 	vector<string> getItems();
     vector<string> getDroppedItems();
-	void getDesc(bool visit,string userCommand);
+	string getDesc(string userCommand);
 	string getDescription();
     string getFeature1Response();
     string getFeature2Response();
+    void setFeature1Response(string resp);
+    void setFeature2Response(string resp);
 	bool isVisited();
 };
 

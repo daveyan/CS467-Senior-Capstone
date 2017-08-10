@@ -67,6 +67,14 @@ void Room::setLongDesc(string desc) {
     this->longDesc = desc;
 }
 
+string Room::getShortDesc() {
+    return shortDesc;
+}
+
+string Room::getLongDesc() {
+    return longDesc;
+}
+
 void Room::visitRoom() {
 	this->visited = true;
 }
@@ -115,10 +123,6 @@ string Room::getName() {
 	return name;
 }
 
-void Room::removeItem(string item) {
-    items.erase(std::remove(items.begin(), items.end(), item), items.end());
-}
-
 vector<string> Room::getItems() {
     return items;
 }
@@ -144,36 +148,36 @@ string Room::getFeature2Response() {
     return feature2Response;
 }
 
+
+void Room::setFeature1Response(string resp) {
+    feature1Response = resp;
+}
+
+void Room::setFeature2Response(string resp) {
+    feature2Response = resp;
+}
+
+
+
 bool Room::isVisited() {
 	return visited;
 }
 
-void Room::getDesc(bool visit, string userCommand){
+string Room::getDesc(string userCommand){
     bool linesWritten = false;
 
-    //general command template [start|end + user command + room name + long|short]
+    //general command template [start|end + long|short|Feature1|Feature2]
 
     //[start|end
     string startCommand = "[start";
     string endCommand = "[end";
     string command;
 
-    // + room name
-    string trimmedRoomName = name;
-    trimmedRoomName.erase(remove_if(trimmedRoomName.begin(),trimmedRoomName.end(), ::isspace), trimmedRoomName.end());
-    // + user command
+    //long|short|Feature1|Feature2
     command.append(userCommand);
-    command.append(trimmedRoomName);
-
-    // + long|short]
-    if(!visit){
-        command.append("long]");
-    }
-    else{
-        command.append("short]");
-    }
-
-    //appending to the start end commands
+    command.append("]");
+    
+    //appending start end commands 
     startCommand.append(command);
     endCommand.append(command);
 
@@ -183,8 +187,11 @@ void Room::getDesc(bool visit, string userCommand){
 
     if(!roomFile.is_open()){
         cout << "Failed to open file" << endl;
+        return "Error";
     }
     
+    string allread = "";
+
     while(std::getline(roomFile,readString)){
         if(readString.find(startCommand) != string::npos){
             while(std::getline(roomFile,readString)){
@@ -192,7 +199,7 @@ void Room::getDesc(bool visit, string userCommand){
                     break;
                 }
                 else{
-                cout << readString << endl;
+                allread.append(readString);
                 linesWritten = true;
                 }                       
             }
@@ -202,7 +209,9 @@ void Room::getDesc(bool visit, string userCommand){
 
     if(!linesWritten){
         cout << "Failed to find starting point" << endl;
+        return "Error";
     }
 
 
+    return allread;
 }

@@ -122,7 +122,7 @@ void Game::play(Game newGame, Room rooms) {
 		//cout << newGame.rooms[newGame.getcurRoom()].getName() << endl;
 
     	newGame.setcurRoom(1); 		//entrance == 1;
-	    newGame.rooms[1].getDesc(newGame.rooms[1].isVisited(),"general");
+	    cout << newGame.rooms[1].getLongDesc() << endl;
 	    newGame.rooms[1].visitRoom();
     }
 	   
