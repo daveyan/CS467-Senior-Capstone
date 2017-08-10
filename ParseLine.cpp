@@ -103,12 +103,16 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 			if (activeGame == 5) {
 				//std::system("clear");
 				cout << ">>> Game Loaded <<<" << endl;
+
+				if(newGame->rooms[newGame->getcurRoom()].isVisited() == false){
+					cout << newGame->rooms[newGame->getcurRoom()].getLongDesc() << endl;;
+					newGame->rooms[newGame->getcurRoom()].visitRoom();
+				}
+				else{
+					cout << newGame->rooms[newGame->getcurRoom()].getShortDesc() << endl;	
+				}
 				
-				//newGame->rooms[newGame->getcurRoom()].getDesc(newGame->rooms[newGame->getcurRoom()].isVisited(),"general");
-				newGame->rooms[newGame->getcurRoom()].getDescription();
-				newGame->rooms[newGame->getcurRoom()].visitRoom();
-
-
+				
 				is_room = true;
 				while (is_room && token != NULL) {
 					newroom = &newGame->rooms[newGame->getcurRoom()];
@@ -438,7 +442,15 @@ int isObject(char* token, Game* newGame, Room* rooms){
 		// Print Message to user saying they grabbed the item, then print the item's description
 		if (strcmp(rooms->getItems()[i].c_str(), token) == 0) {
 			cout << "You've grabbed the " << rooms->getItems()[i] << endl;
-			cout << rooms->getItems()[i] << endl;
+			//cout << rooms->getItems()[i] << endl;
+
+			//PRINTING ITEM DESCRIPTION
+			for (int j = 0; j < 8;j++){
+				if(rooms->getItems()[i].c_str() == newGame->allitems[j].getName()){
+					cout << newGame->allitems[j].getDescription() << endl;
+				}
+			}
+
 			newGame->addToInventory(rooms->getItems()[i]);
 			return 1;
 		}

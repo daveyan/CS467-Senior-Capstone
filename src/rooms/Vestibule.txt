@@ -1,15 +1,15 @@
 [startlong]
-LONG
+VESTIBULE LONG
 [endlong]
 
 [startshort]
-SHORT
+VESTIBULE SHORT
 [endshort]
 
 [startFeature1]
-FEATURE 1
+VESTIBULE FEATURE 1
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+VESTIBULE FEATURE 2
 [endFeature2]

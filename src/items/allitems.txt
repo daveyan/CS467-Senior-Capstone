@@ -1,0 +1,31 @@
+[startmetalBar]
+wow that's a nice crowbar
+[endmetalBar]
+
+[startkeycard]
+you dont' have a crowbar
+[endkeycard]
+
+[startflashlight]
+you dont' have a crowbar
+[endflashlight]
+
+[startd]
+ITEM D
+[endd]
+
+[starte]
+ITEM E
+[ende]
+
+[startf]
+ITEM F
+[endf]
+
+[startg]
+ITEM G
+[endg]
+
+[starth]
+ITEM H
+[endh]

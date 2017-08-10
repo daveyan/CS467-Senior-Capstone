@@ -11,14 +11,15 @@ int main() {
 	//ALL ITEMS
 
 	
-	Item a(1,"metalBar","desc");
-	Item b(2,"keycard","desc");
-	Item c(3,"flashlight","desc");
-	Item d(4,"d","desc");
-	Item e(5,"e","desc");
-	Item f(6,"f","desc");
-	Item g(7,"g","desc");
-	Item h(8,"h","desc");
+	Item a(1,"metalBar","");
+	Item b(2,"keycard","");
+	Item c(3,"flashlight","");
+	Item d(4,"d","");
+	Item e(5,"e","");
+	Item f(6,"f","");
+	Item g(7,"g","");
+	Item h(8,"h","");
+	/*
 	Item i(9,"i","desc");
 	Item j(10,"j","desc");
 	Item k(11,"k","desc");
@@ -26,6 +27,7 @@ int main() {
 	Item m(13,"m","desc");
 	Item n(14,"n","desc");
 	Item o(15,"o","desc");
+	*/
 
 	//push items into game.allitems vector - loadgame
 	newGame.allitems.push_back(a);
@@ -36,6 +38,7 @@ int main() {
 	newGame.allitems.push_back(f);
 	newGame.allitems.push_back(g);
 	newGame.allitems.push_back(h);
+	/*
 	newGame.allitems.push_back(i);
 	newGame.allitems.push_back(j);
 	newGame.allitems.push_back(k);
@@ -43,7 +46,7 @@ int main() {
 	newGame.allitems.push_back(m);
 	newGame.allitems.push_back(n);
 	newGame.allitems.push_back(o);
-
+	*/
 
 
 	Room empty(0,"");
@@ -167,6 +170,11 @@ int main() {
 		newGame.rooms[i].setFeature2Response(feature2);
 	}
 
+	//Reading item text and adding it to the item desc
+	for (int i = 0; i < 8; i++){
+		string itemDesc = newGame.allitems[i].readDescription(newGame.allitems[i].getName());
+		newGame.allitems[i].setDescription(itemDesc);
+	}
 
 
     newGame.play(newGame, entrance);

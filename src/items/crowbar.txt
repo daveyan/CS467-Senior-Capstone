@@ -1,7 +1,0 @@
-[startlookcrowbaryes]
-wow that's a nice crowbar
-[endlookcrowbaryes]
-
-[startlookcrowbarno]
-you dont' have a crowbar
-[endlookcrowbarno]

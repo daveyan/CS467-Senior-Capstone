@@ -10,6 +10,7 @@ private:
 	int id;
 	string name;
 	string description;
+	string itemPath;
 public:
 	Item(int id, string name, string description);
 	void setId(int id);
@@ -18,6 +19,7 @@ public:
 	int getId();
 	string getName();
 	string getDescription();
+	string readDescription(string itemName);
 };
 
 #endif

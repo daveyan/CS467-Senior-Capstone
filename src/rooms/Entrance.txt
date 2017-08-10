@@ -1,15 +1,15 @@
 [startlong]
-LONG
+ENTRANCE LONG
 [endlong]
 
 [startshort]
-SHORT
+ENTRANCE SHORT
 [endshort]
 
 [startFeature1]
-FEATURE 1
+ENTRANCE FEATURE 1
 [endFeature1]
 
 [startFeature2]
-FEATURE 2
+ENTRANCE FEATURE 2
 [endFeature2]
