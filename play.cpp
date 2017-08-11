@@ -159,15 +159,36 @@ int main() {
 		string descshort = "";
 		string feature1 = "";
 		string feature2 = "";
+
+		// Patrick Added - 8.11.2017
+		string feature1response = "";
+		string feature2response = "";
+
 		desclong = newGame.rooms[i].getDesc("long");
 		descshort = newGame.rooms[i].getDesc("short");
-		feature1 = newGame.rooms[i].getDesc("Feature1");
-		feature2 = newGame.rooms[i].getDesc("Feature2");
+		//feature1 = newGame.rooms[i].getDesc("Feature1");
+		//feature2 = newGame.rooms[i].getDesc("Feature2");
+
+		// Patrick Added - 8.11.2017
+		feature1response = newGame.rooms[i].getDesc("Feature1");
+		feature2response = newGame.rooms[i].getDesc("Feature2");
+
+		// Patrick Added - 8.11.2017
+		feature1 = newGame.rooms[i].getDesc("Feature1Key");
+		feature2 = newGame.rooms[i].getDesc("Feature2Key");
+
+		// Patrick Added - 8.11.2017
+		newGame.rooms[i].setFeature1Key(feature1);
+		newGame.rooms[i].setFeature2Key(feature2);
 
 		newGame.rooms[i].setLongDesc(desclong);
 		newGame.rooms[i].setShortDesc(descshort);
-		newGame.rooms[i].setFeature1Response(feature1);
-		newGame.rooms[i].setFeature2Response(feature2);
+		//newGame.rooms[i].setFeature1Response(feature1);
+		//newGame.rooms[i].setFeature2Response(feature2);
+
+		// Patrick Added - 8.11.2017
+		newGame.rooms[i].setFeature1Response(feature1response);
+		newGame.rooms[i].setFeature2Response(feature2response);
 	}
 
 	//Reading item text and adding it to the item desc

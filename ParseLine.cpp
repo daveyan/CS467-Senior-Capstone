@@ -502,6 +502,9 @@ int isFeature(char* token, Game* newGame, Room* rooms) {
 	// Testing
 	cout << rooms->getFeature1Key() << endl;
 	cout << rooms->getFeature2Key() << endl;
+	cout << rooms->getFeature1Response() << endl;
+	cout << rooms->getFeature2Response() << endl;
+
 
 	// Compare to first feature
 	if (strcmp(rooms->getFeature1Key().c_str(), token) == 0) {
