@@ -220,6 +220,8 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Feature
 			//GETTING THE ITEMS IN THE ROOM
 			for(int i = 1; i < newGame->rooms.size();i++){
 				savefile << newGame->rooms[i].getName() <<endl;
+				
+					
 				//write number of items
 				savefile << newGame->rooms[i].getItems().size() <<endl;
 
@@ -247,7 +249,7 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Feature
 
 		// Load game
 		if (strcmp(token, "loadgame") == 0 || strcmp(token, "Loadgame") == 0) {
-			cout << "Loadgame logic here..." << endl;
+			
 			ifstream loadfile;
 			loadfile.open ("savegame.txt");
 			vector<string> loadfileData;
@@ -278,6 +280,7 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Feature
 
 			for (int i = 1; i < newGame->rooms.size();i++){
 				newGame->rooms[i].clearRoomInv();
+				newGame->rooms[i].setVisited(false);
 
 				//cout << loadfileData[lineNumber] << endl;//room name
 				lineNumber++;

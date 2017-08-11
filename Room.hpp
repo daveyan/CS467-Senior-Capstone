@@ -78,6 +78,7 @@ public:
     string getFeature1Key();
     string getFeature2Key();
 	bool isVisited();
+    void setVisited(bool v);
 
     void clearRoomInv();
     void removeItem(string item);

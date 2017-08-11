@@ -57,50 +57,43 @@ h
 
 
 Mechanical Parts Supply Room
-1
-i
+0
 
 
 
 
 Robot Assembly Room
-1
-j
+0
 
 
 
 
 Taxidermy Research Room
-1
-k
+0
 
 
 
 
 Computer Lab
-1
-l
+0
 
 
 
 
 Live Robot Animals
-1
-m
+0
 
 
 
 
 Mock Forest
-1
-n
+0
 
 
 
 
 Monitoring Room
-1
-o
+0
 
 
 

@@ -181,6 +181,10 @@ void Room::clearRoomInv(){
     items.clear();
 }
 
+void Room::setVisited(bool v){
+    visited = v;
+}
+
 string Room::getDesc(string userCommand){
     bool linesWritten = false;
 
