@@ -122,13 +122,9 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 					newroom = &newGame->rooms[newGame->getcurRoom()];
 					newGame->setcurRoom(newroom->getId());
 
-					//cout << newroom.getName() <<endl;
-					//cout << rooms.getName() << endl;
+					is_room = false;
+					rooms = newroom;
 
-					if (strcmp(newroom->getName().c_str(), rooms->getName().c_str()) != 0) {
-						is_room = false;
-						rooms = newroom;
-					}
 					
 				}
 			}	
@@ -196,7 +192,6 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 			savefile.open ("savegame.txt");
 			//write players position
 			savefile << newGame->getcurRoom() << endl;
-			//savefile <<"\n";
 			//write number of items in inventory
 			savefile << newGame->getInventory().size() << endl;
 			for (int i = 0; i < newGame->getInventory().size();i++){
@@ -204,17 +199,30 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 			}
 
 
-			//GETTING THE ITEMS IN THE ROOM - NOT NECESSARY? 
-			/*
-			for(int i = 0; i < newGame->rooms.size();i++){
-				savefile << newGame->rooms[i].getName() + "\n";
 
-				for(int j = 0; j < newGame->rooms[i].getItems().size(); j++){
-					savefile << newGame->rooms[i].getItems()[j].getName() + "\n";
+
+			//GETTING THE ITEMS IN THE ROOM
+			for(int i = 1; i < newGame->rooms.size();i++){
+				savefile << newGame->rooms[i].getName() <<endl;
+				//write number of items
+				savefile << newGame->rooms[i].getItems().size() <<endl;
+
+				//write item names
+				if (!(newGame->rooms[i].getItems().empty())){
+					for(int j = 0; j < newGame->rooms[i].getItems().size(); j++){
+					savefile << newGame->rooms[i].getItems()[j] <<endl;
+					}
 				}
-				
+					
+				//write the exit status
+				savefile << newGame->rooms[i].getNorthExitStatus() << endl;
+				savefile << newGame->rooms[i].getSouthExitStatus() << endl;
+				savefile << newGame->rooms[i].getEastExitStatus() << endl;
+				savefile << newGame->rooms[i].getWestExitStatus() << endl;
+
 			}
-			*/
+
+			
 			savefile.close();
 
 
@@ -229,20 +237,51 @@ int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* n
 			vector<string> loadfileData;
 			string s;
 			int data;
+			int lineNumber = 0;
+
 			while(std::getline(loadfile,s)){
 				loadfileData.push_back(s);
 			}
 
-			int loadRoomId = std::stoi(loadfileData[0]); 			//line one is current position
-			newGame->setcurRoom(loadRoomId);
-			int numItems = std::stoi(loadfileData[1]);				//line two has number of items in inventory
-			newGame->clearInv(); 							//clear all items from inventory
-
+			int loadRoomId = std::stoi(loadfileData[lineNumber]); //0		
 			
-			for (int i = 0; i < numItems; i++){
-				newGame->addToInventory(loadfileData[i+2]);
-			}
+			newGame->setcurRoom(loadRoomId);
 
+			lineNumber++;
+			int numItems = std::stoi(loadfileData[lineNumber]); //1				
+			lineNumber++;
+			newGame->clearInv(); 											
+
+			if(numItems != 0){
+				for (int i = 0; i < numItems; i++){
+					newGame->addToInventory(loadfileData[i+lineNumber]);
+				}
+			}
+			lineNumber += numItems;
+
+
+			for (int i = 1; i < newGame->rooms.size();i++){
+				newGame->rooms[i].clearRoomInv();
+
+				//cout << loadfileData[lineNumber] << endl;//room name
+				lineNumber++;
+				//cout << loadfileData[lineNumber] << endl;//number of items
+				int numRoomItems = std::stoi(loadfileData[lineNumber]);
+				lineNumber++;
+				for (int j = 0; j < numRoomItems;j++){
+					newGame->rooms[i].addItem(loadfileData[lineNumber]);
+					//cout << loadfileData[lineNumber] << endl;
+					lineNumber++;
+				}
+				newGame->rooms[i].setNorthExitStatus(loadfileData[lineNumber]);
+				lineNumber++; //at N move S
+				newGame->rooms[i].setSouthExitStatus(loadfileData[lineNumber]);
+				lineNumber++; //at S move E
+				newGame->rooms[i].setEastExitStatus(loadfileData[lineNumber]);
+				lineNumber++; //at E move W
+				newGame->rooms[i].setWestExitStatus(loadfileData[lineNumber]);
+				lineNumber++; //at W move next room
+			}
 
 			
 			

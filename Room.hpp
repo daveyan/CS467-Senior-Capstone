@@ -45,10 +45,10 @@ public:
 	void addSouth(int roomId);
 	void addEast(int roomId);
 	void addWest(int roomId);
-	void setNorthExitStatus(int status);
-    void setSouthExitStatus(int status);
-    void setEastExitStatus(int status);
-    void setWestExitStatus(int status);
+	void setNorthExitStatus(string status);
+    void setSouthExitStatus(string status);
+    void setEastExitStatus(string status);
+    void setWestExitStatus(string status);
     void setShortDesc(string desc);
     void setLongDesc(string desc);
     string getShortDesc();
@@ -79,6 +79,7 @@ public:
     string getFeature2Key();
 	bool isVisited();
 
+    void clearRoomInv();
     void removeItem(string item);
 };
 

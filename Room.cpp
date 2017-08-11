@@ -43,19 +43,19 @@ void Room::addWest(int roomId) {
 	west = roomId;
 }
 
-void Room::setNorthExitStatus(int status) {
+void Room::setNorthExitStatus(string status) {
     northExitStatus = status;
 }
 
-void Room::setSouthExitStatus(int status) {
+void Room::setSouthExitStatus(string status) {
     southExitStatus = status;
 }
 
-void Room::setEastExitStatus(int status) {
+void Room::setEastExitStatus(string status) {
     eastExitStatus = status;
 }
 
-void Room::setWestExitStatus(int status) {
+void Room::setWestExitStatus(string status) {
     westExitStatus = status;
 }
 
@@ -175,6 +175,10 @@ string Room::getFeature2Key() {
 
 bool Room::isVisited() {
 	return visited;
+}
+
+void Room::clearRoomInv(){
+    items.clear();
 }
 
 string Room::getDesc(string userCommand){

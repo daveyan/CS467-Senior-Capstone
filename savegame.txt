@@ -1,3 +1,107 @@
-12
+1
+0
+Entrance
 1
 metalBar
+
+
+
+
+Vestibule
+1
+keycard
+
+
+
+
+Mechanical Room
+1
+flashlight
+
+
+
+
+Hidden Garage
+1
+d
+
+
+
+
+Bathroom
+1
+e
+
+
+
+
+Break Room
+1
+f
+
+
+
+
+Lounge
+1
+g
+
+
+
+
+Office
+1
+h
+
+
+
+
+Mechanical Parts Supply Room
+1
+i
+
+
+
+
+Robot Assembly Room
+1
+j
+
+
+
+
+Taxidermy Research Room
+1
+k
+
+
+
+
+Computer Lab
+1
+l
+
+
+
+
+Live Robot Animals
+1
+m
+
+
+
+
+Mock Forest
+1
+n
+
+
+
+
+Monitoring Room
+1
+o
+
+
+
+
