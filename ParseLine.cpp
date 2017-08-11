@@ -37,7 +37,7 @@ using std::swap;
 * Description: keeps the command prompt active until the game
   ends or the user quits.
 *****/
-void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room* rooms) {
+void commandLoop(RoomAction* r_action, ObjectAction* o_action, FeatureAction* f_action, Game* newGame, Room* rooms) {
 	char line[256]; // Array to hold user's entered line
 	int activeGame = 0; // controls the loop
 	int action;
@@ -47,7 +47,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 
 	Room* newroom = rooms;
 
-	bool is_room = false, is_object = false; // flags to control search
+	bool is_room = false, is_object = false, is_feature = false; // flags to control search
 
 	
 	while (activeGame != -1) {
@@ -62,9 +62,9 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 		// Split line into tokens
 		char* token = strtok(line, " ");
 		while (token != NULL) {
-			activeGame = parseLine(token, r_action, o_action, newGame, rooms);
+			activeGame = parseLine(token, r_action, o_action, f_action, newGame, rooms);
 			
-			// If the user entered a room action verb, search for a room name
+			// If the user entered a room action verb, search for a room noun
 			if (activeGame == 1) {
 				is_room = true;
 				while (is_room && token != NULL) {
@@ -89,7 +89,7 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 				}
 			}
 
-			// If the user entered an object action verb, search for an object name
+			// If the user entered an object action verb, search for an object noun
 			if (activeGame == 2) {
 				is_object = true;
 				while (is_object && token != NULL) {
@@ -100,6 +100,21 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 						token = strtok(NULL, " "); // Find the next token
 						if (token == NULL && action == 0)
 							cout << "You didn't select an object." << endl;
+					}
+				}
+			}
+
+			// If the user entered a feature action verb, search for a feature noun
+			if (activeGame == 10) {
+				is_feature = true;
+				while (is_feature && token != NULL) {
+					action = isFeature(token, newGame, rooms);
+					if (action == 1)
+						is_feature = false;
+					else {
+						token = strtok(NULL, " ");
+						if (token == NULL && action == 0)
+							cout << "No matching feature found.\nYou can only examine features if a room has them." << endl;
 					}
 				}
 			}
@@ -160,12 +175,13 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 * Description: Parses the user's command and determines the action
   the game takes via the game engine
 *****/
-int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, Game* newGame, Room* rooms) {
+int parseLine(char* token, RoomAction* r_action, ObjectAction* o_action, FeatureAction* f_action, Game* newGame, Room* rooms) {
 
 	int verb = 0;
-	verb = actionType(token, r_action, o_action);
-	if (verb == 1) return 1; // Check for room action
-	if (verb == 2) return 2; // Check for object action
+	verb = actionType(token, r_action, o_action, f_action);
+	if (verb == 1) return 1; // Check for room action noun
+	if (verb == 2) return 2; // Check for object action noun
+	if (verb == 10) return 10; // Check for feature action noun
 
 	else {
 
@@ -297,9 +313,9 @@ int dropItem(char* token, Game* newGame, Room* rooms) {
   to the contents of each action word array to determine what type of object to search for
   next in the user's input, if any at all.
 *****/
-int actionType(char* token, RoomAction* r_action, ObjectAction* o_action){
+int actionType(char* token, RoomAction* r_action, ObjectAction* o_action, FeatureAction* f_action){
 	// Check for room actions
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 10; i++) {
 		if (strcmp(r_action->roomAction[i], token) == 0) {
 			//cout << token << " is a room action verb." << endl;
 			return 1;
@@ -307,6 +323,10 @@ int actionType(char* token, RoomAction* r_action, ObjectAction* o_action){
 		if (strcmp(o_action->objectAction[i], token) == 0) {
 			//cout << token << " is an object action verb." << endl;
 			return 2;
+		}
+		if (strcmp(f_action->featureAction[i], token) == 0) {
+			//cout << token << " is an object action verb." << endl;
+			return 10;
 		}
 	}
 	return 0;
@@ -459,11 +479,41 @@ int isObject(char* token, Game* newGame, Room* rooms){
 
 			// Remove the item from the room's list of items
 			rooms->removeItem(token);
-			
+
 			return 1;
 		}
 	}
 
 	// If no valid object to grab, return 0, prompting "you didn't select object" message for player
+	return 0;
+}
+
+/*****
+* Function: isFeature(char* token, Game* newGame, Room* rooms)
+* Parameters: char* token, Game* newGame, Room* rooms
+* Description: if actionType() determines that the player entered a Feature Action verb, isFeature
+  examines the remainder of the user's entered string. Each token is compared to the feature nouns
+  of the current room. If a match is found, isFeature returns 1, indicating a match is found, and
+  the feature's description is displayed to the user. If no match is found, 0 is returned, and isFeature()
+  is continually called until either a match is found or not.
+*****/
+int isFeature(char* token, Game* newGame, Room* rooms) {
+
+	// Testing
+	cout << rooms->getFeature1Key() << endl;
+	cout << rooms->getFeature2Key() << endl;
+
+	// Compare to first feature
+	if (strcmp(rooms->getFeature1Key().c_str(), token) == 0) {
+		cout << "Feature1 match found!!" << endl;
+		return 1;
+	}
+
+	// Compare to second feature
+	if (strcmp(rooms->getFeature2Key().c_str(), token) == 0) {
+		cout << "Feature2 match found!!" << endl;
+		return 1;
+	}
+
 	return 0;
 }
