@@ -229,3 +229,7 @@ string Room::getDesc(string userCommand){
 
     return allread;
 }
+
+void Room::removeItem(string item) {
+    items.erase(std::remove(items.begin(), items.end(), item), items.end());
+}

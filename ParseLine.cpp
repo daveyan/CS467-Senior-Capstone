@@ -41,6 +41,10 @@ void commandLoop(RoomAction* r_action, ObjectAction* o_action, Game* newGame, Ro
 	char line[256]; // Array to hold user's entered line
 	int activeGame = 0; // controls the loop
 	int action;
+
+	// Ensure the rooms use the appropriate memory address
+	rooms = &newGame->rooms[newGame->getcurRoom()];
+
 	Room* newroom = rooms;
 
 	bool is_room = false, is_object = false; // flags to control search
@@ -452,6 +456,10 @@ int isObject(char* token, Game* newGame, Room* rooms){
 			}
 
 			newGame->addToInventory(rooms->getItems()[i]);
+
+			// Remove the item from the room's list of items
+			rooms->removeItem(token);
+			
 			return 1;
 		}
 	}

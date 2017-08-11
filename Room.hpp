@@ -78,6 +78,8 @@ public:
     string getFeature1Key();
     string getFeature2Key();
 	bool isVisited();
+
+    void removeItem(string item);
 };
 
 
