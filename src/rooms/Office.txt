@@ -21,3 +21,11 @@ The power has been off so the food is no longer good, but you drink a Dr Pepper.
 [startItem]
 file
 [endItem]
+
+[startFeature1Key]
+documents
+[endFeature1Key]
+
+[startFeature2Key]
+mini fridge
+[endFeature2Key]

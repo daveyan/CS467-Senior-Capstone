@@ -21,3 +21,11 @@ you find out that the batteries are used to charge the owls and only last about 
 [startExitWest]
 12
 [endExitWest]
+
+[startFeature1Key]
+lenses
+[endFeature1Key]
+
+[startFeature2Key]
+print out
+[endFeature2Key]

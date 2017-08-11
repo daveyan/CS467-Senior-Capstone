@@ -31,9 +31,9 @@ key card
 [endExitEastCond]
 
 [startFeature1Key]
-locker
+dead bodies
 [endFeature1Key]
 
 [startFeature2Key]
-utility closet
+power supply
 [endFeature2Key]

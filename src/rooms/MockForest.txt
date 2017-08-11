@@ -22,3 +22,12 @@ Inside the notebook you see a {post it} with a passcode written on it. This coul
 post it
 [endItem]
 
+[startFeature1Key]
+chipmunk
+[endFeature1Key]
+
+[startFeature2Key]
+notebook
+[endFeature2Key]
+
+
