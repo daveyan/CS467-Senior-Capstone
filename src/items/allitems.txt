@@ -1,13 +1,13 @@
 [startmetalBar]
-wow that's a nice crowbar
+METAL BAR DESC
 [endmetalBar]
 
 [startkeycard]
-you dont' have a crowbar
+KEYCARD DESC
 [endkeycard]
 
 [startflashlight]
-you dont' have a crowbar
+FLASHLIGHT DESC
 [endflashlight]
 
 [startd]

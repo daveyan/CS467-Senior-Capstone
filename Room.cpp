@@ -165,11 +165,11 @@ void Room::setFeature2Key(string key) {
     feature2Key = key;
 }
 
-string getFeature1Key() {
+string Room::getFeature1Key() {
     return feature1Key;
 }
 
-string getFeature2Key() {
+string Room::getFeature2Key() {
     return feature2Key;
 }
 
