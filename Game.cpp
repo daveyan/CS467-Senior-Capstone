@@ -46,7 +46,7 @@ void Game::play(Game newGame, Room rooms) {
     // Load room and item files
 
 
-    /* For testing -- not to be used in final version */
+    // Room action verbs
 	char rAction[10][100] = {
 		"move",
 		"Move",
@@ -56,33 +56,39 @@ void Game::play(Game newGame, Room rooms) {
 		"Walk",
 		"run",
 		"Run"
+		"travel",
+		"Travel"
 	};
 
-	/* For testing -- not to be used in final version */
-	char oAction[8][100] = {
+	// Item action verbs
+	char oAction[10][100] = {
 		"pick",
 		"Pick",
 		"grab",
 		"Grab",
 		"use",
 		"Use",
+		"throw",
+		"Throw",
+		"take",
+		"Take"
+	};
+
+	// Feature action verbs
+	char fAction[10][100] = {
 		"look",
-		"Look"
+		"Look",
+		"peer",
+		"Peer",
+		"view",
+		"View",
+		"examine",
+		"Examine",
+		"inspect",
+		"Inspect"
 	};
 
-	/* For testing -- not to be used in final version */
-	char rms[3][100] = {
-		"cave",
-		"vault",
-		"cellar"
-	};
 
-	/* For testing -- not to be used in final version */
-	char objs[3][100] = {
-		"knife",
-		"shovel",
-		"hammer"
-	};
 
 	/* Initialize all structs and fill their arrays */
 	RoomAction* r_action = (RoomAction*)malloc(sizeof(RoomAction));
@@ -95,15 +101,11 @@ void Game::play(Game newGame, Room rooms) {
 		strcpy(o_action->objectAction[i], oAction[i]);
 	}
 
-	Rooms* roomnames = (Rooms*)malloc(sizeof(Rooms));
-	for (int i = 0; i < 3; i++) {
-		strcpy(roomnames->rooms[i], rms[i]);
+	FeatureAction* f_action = (FeatureAction*)malloc(sizeof(FeatureAction));
+	for (int i = 0; i < 10; i++) {
+		strcpy(f_action->featureAction[i], fAction[i]);
 	}
 
-	Objects* objects = (Objects*)malloc(sizeof(Objects));
-	for (int i = 0; i < 3; i++) {
-		strcpy(objects->objects[i], objs[i]);
-	}
 
 
 
@@ -128,7 +130,7 @@ void Game::play(Game newGame, Room rooms) {
 	   
 
 
-    commandLoop(r_action, o_action, &newGame, &rooms);
+    commandLoop(r_action, o_action, f_action, &newGame, &rooms);
 
     
 }
