@@ -31,6 +31,10 @@ private:
     vector<string> itemsDropped;
     bool visited;
 public:
+
+    bool hasItem = false;
+    bool hasSecondItem = false;
+
     string item;
     Room();
     Room(int id, string name, string shortDesc, string longDesc);

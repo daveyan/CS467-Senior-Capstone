@@ -31,7 +31,13 @@ void Parse::popEntranceItemNouns() {
     entranceItemNouns.push_back("rod");
 }
 */
-
+Room* Parse::findRoom(Game &curGame, string name) {
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (strstr(name.c_str(), curGame.rooms[i].getName().c_str())) {
+            return &curGame.rooms[i];
+        }
+    }
+}
 
 bool Parse::checkForMatch(vector<string> collection1, vector<string> collection2, string userInput) {
     int sizeOfCol1 = collection1.size();
@@ -52,7 +58,8 @@ bool Parse::checkForMatch(vector<string> collection1, vector<string> collection2
 void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
     // If the user wants to go north
     if (strstr(userInput.c_str(), "go north") != NULL) {
-        if (!curGame.inInventory("bar")) {
+        //if (!curGame.inInventory("bar")) {
+        if (curRoom->hasItem == false) {
             cout << "You should have a bar to pry the door open..." << endl;
         } else {
             cout << "The door is now to open to go through since you pried it open with the metal bar" << endl;
@@ -71,12 +78,15 @@ void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
     } else if (checkForMatch(actions, entranceItemNouns, userInput)) {
         // user wants to grab bar
         // Check if already in inventory
-        if (curGame.inInventory("bar")) {
+        //if (curGame.inInventory("bar")) {
+        if (curRoom->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("bar");
             curRoom->item = "null";
+            curRoom->hasItem = true;
             cout << "You have grabbed the metal bar." << endl;
+
         }
     } else {
         cout << "Command not recognized" << endl;
@@ -87,7 +97,8 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
     // If the user wants to go north
     if (strstr(userInput.c_str(), "go north") != NULL) {
         // Need keycard
-        if (!curGame.inInventory("keycard")) {
+        //if (!curGame.inInventory("keycard")) {
+        if (curRoom->hasItem == false) {
             cout << "You need a keycard to go through the door open..." << endl;
         } else {
             curGame.curRoom = curRoom->getNorth();
@@ -98,7 +109,8 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
 
     } else if (strstr(userInput.c_str(), "go east") != NULL) {
         // Need flashlight
-        if (!curGame.inInventory("flashlight")) {
+       // if (!curGame.inInventory("flashlight")) {
+        if (curRoom->hasSecondItem == false) {
             cout << "You should have a flashlight before going into such a dark room..." << endl;
         } else {
             cout << "You have the illumination necessary to go east" << endl;
@@ -114,6 +126,7 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
         } else {        
             curGame.addToInventory("flashlight");
             curRoom->item = "null";
+            curRoom->hasSecondItem = true;
             cout << "You have grabbed the flashlight." << endl;
         }
     } else {
@@ -141,7 +154,8 @@ void Parse::parseGarage(Game &curGame, Room *curRoom, string userInput) {
     } else if (strstr(userInput.c_str(), "go south") != NULL) {
         cout << "There is nowhere south of here" << endl;
     } else if (strstr(userInput.c_str(), "go east") != NULL) {
-        if (!curGame.inInventory("opener")) {
+        //if (!curGame.inInventory("opener")) {
+        if (curRoom->hasItem == false) {
             cout << "Looks like a garage door opener is needed to leave this way..." << endl;
         } else {
             cout << "You should have opened the garage door, sped out, and now you are free to tell the world about what you learned!" << endl;
@@ -151,10 +165,13 @@ void Parse::parseGarage(Game &curGame, Room *curRoom, string userInput) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, garageItemNouns, userInput)) {
         // user wants to grab keycard
-        if (curGame.inInventory("keycard")) {
+        Room* vestibule = findRoom(curGame, "Vestibule");
+        //if (curGame.inInventory("keycard")) {
+        if (vestibule->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("keycard");
+            vestibule->hasItem = true;
             curRoom->item = "null";
             cout << "You have grabbed the keycard." << endl;
         }
@@ -174,11 +191,14 @@ void Parse::parseBreakRoom(Game &curGame, Room *curRoom, string userInput) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, breakroomItemNouns, userInput)) {
         // user wants to grab hat
-        if (curGame.inInventory("hat")) {
+        Room* computerlab = findRoom(curGame, "Computer Lab");
+        //if (curGame.inInventory("hat")) {
+        if (computerlab->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("hat");
             curRoom->item = "null";
+            computerlab->hasItem = true;
             cout << "You have grabbed the hard hat." << endl;
         }
     } else {
@@ -225,11 +245,13 @@ void Parse::parseOffice(Game &curGame, Room *curRoom, string userInput) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, officeItemNouns, userInput)) {
         // user wants to grab file
-        if (curGame.inInventory("file")) {
+        //if (curGame.inInventory("file")) {
+        if (curRoom->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("file");
             curRoom->item = "null";
+            curRoom->hasItem = true;
             cout << "You have grabbed the file." << endl;
         }
     } else {
@@ -240,7 +262,8 @@ void Parse::parseOffice(Game &curGame, Room *curRoom, string userInput) {
 void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
     if (strstr(userInput.c_str(), "go north") != NULL) {
         // Need postit
-        if (!curGame.inInventory("postit")) {
+        //if (!curGame.inInventory("postit")) {
+        if (curRoom->hasItem == false) {
             cout << "You need the passcode to open the door. Maybe it is written down somewhere..." << endl;
         } else {
             cout << "You use the passcode to go through the door" << endl;
@@ -250,7 +273,8 @@ void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
         curGame.curRoom = curRoom->getSouth();
     } else if (strstr(userInput.c_str(), "go east") != NULL) {
         // Need hard had
-        if (!curGame.inInventory("hat")) {
+        //if (!curGame.inInventory("hat")) {
+        if (curRoom->hasItem == false) {
             cout << "It sounds dangerous in there. Maybe you should have some protective equipment..." << endl;
         } else {
             cout << "With the hard hat on, you move forward..." << endl;
@@ -270,7 +294,8 @@ void Parse::parseLiveRobotAnimals(Game &curGame, Room *curRoom, string userInput
         cout << "There is nowhere south of here" << endl;
     } else if (strstr(userInput.c_str(), "go east") != NULL) {
         // Need net
-        if (!curGame.inInventory("net")) {
+        //if (!curGame.inInventory("net")) {
+        if (curRoom->hasItem == false) {
             cout << "Something should be used to secure the area before moving forward..." << endl;
         } else {
             cout << "The net was thrown, capturing the owl, allowing you to move forward" << endl;
@@ -293,12 +318,15 @@ void Parse::parseMockForest(Game &curGame, Room *curRoom, string userInput) {
     } else if (strstr(userInput.c_str(), "go west") != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, mockforestItemNouns, userInput)) {
-        // user wants to grab file
-        if (curGame.inInventory("postit")) {
+        // user wants to grab postit
+        Room* computerLab = findRoom(curGame, "Computer Lab");
+        //if (curGame.inInventory("postit")) {
+        if (computerLab->hasSecondItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("postit");
             curRoom->item = "null";
+            computerLab->hasSecondItem = true;
             cout << "You have grabbed the postit." << endl;
         }
     } else {
@@ -345,11 +373,14 @@ void Parse::parseMechanicalSupplyRoom(Game &curGame, Room *curRoom, string userI
         cout << "There is nowhere west of here" << endl;
     } else if (checkForMatch(actions, mechanicalsupplyItemNouns, userInput)) {
         // user wants to grab net
-        if (curGame.inInventory("net")) {
+        Room* liveRobotAnimals = findRoom(curGame, "Live Robot Animals");
+        //if (curGame.inInventory("net")) {
+        if (liveRobotAnimals->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("net");
             curRoom->item = "null";
+            liveRobotAnimals->hasItem = true;
             cout << "You have grabbed the exploding net." << endl;
         }
     } else {
@@ -368,11 +399,14 @@ void Parse::parseMonitoringRoom(Game &curGame, Room *curRoom, string userInput) 
         cout << "There is nowhere west of here" << endl;
     } else if (checkForMatch(actions, monitoringroomItemNouns, userInput)) {
         // user wants to grab opener
-        if (curGame.inInventory("opener")) {
+        Room* garage = findRoom(curGame, "Garage");
+        //if (curGame.inInventory("opener")) {
+        if (garage->hasItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
             curGame.addToInventory("opener");
             curRoom->item = "null";
+            garage->hasItem = true;
             cout << "You have grabbed the garage door opener." << endl;
         }
     } else {
@@ -381,6 +415,20 @@ void Parse::parseMonitoringRoom(Game &curGame, Room *curRoom, string userInput) 
 }
 
 void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
+    // If user wants to pick up a dropped item
+    if (checkForMatch(actions, curRoom->getDroppedItems(), userInput)) {
+        for (int i = 0; i < curRoom->getDroppedItems().size(); i++) {
+            if (strstr(userInput.c_str(), curRoom->getDroppedItems()[i].c_str())) {
+                cout << "You have grabbed the " << curRoom->getDroppedItems()[i] << " again." << endl;
+
+                // Add to player inventory
+                curGame.addToInventory(curRoom->getDroppedItems()[i]);
+
+                // Remove from room's dropped items vector
+                curRoom->removeItem(curRoom->getDroppedItems()[i]);
+            }
+        }
+    }
 
     // Check inventory
     if (strstr(userInput.c_str(), "inventory")) {

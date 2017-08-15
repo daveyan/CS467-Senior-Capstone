@@ -27,6 +27,7 @@ public:
     //vector<string> mockforestItemNouns;
     //vector<string> mechanicalsupplyItemNouns;
     //vector<string> monitoringroomItemNouns;
+    Room* findRoom(Game &curGame, string name);
     bool checkForMatch(vector<string> collection1, vector<string> collection2, string userInput);
     void parseInput(Game &curGame, Room *curRoom, string userInput);
     void parseEntrance(Game &curGame, Room *curRoom, string userInput);
