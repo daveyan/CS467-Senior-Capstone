@@ -263,7 +263,7 @@ void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
     if (strstr(userInput.c_str(), "go north") != NULL) {
         // Need postit
         //if (!curGame.inInventory("postit")) {
-        if (curRoom->hasItem == false) {
+        if (curRoom->hasSecondItem == false) {
             cout << "You need the passcode to open the door. Maybe it is written down somewhere..." << endl;
         } else {
             cout << "You use the passcode to go through the door" << endl;
