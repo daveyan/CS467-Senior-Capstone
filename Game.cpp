@@ -9,6 +9,8 @@
 #include "Game.hpp"
 #include "Parse.hpp"
 
+#include <unordered_map>
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -73,6 +75,30 @@ void Game::readHelpInfo(){
 
 vector<string> Game::getHelpInfo(){
     return helpInfo;
+}
+
+void Game::readItemInfo(){
+    vector<string> data;
+    string line;
+    std::ifstream infile ("itemdata");
+    if(infile.is_open()){
+        while(getline(infile,line)){
+            data.push_back(line);
+        }
+        infile.close();
+    }
+
+    for (int i = 0; i < data.size(); i+=2){
+         itemInfo.insert({data[i],data[i+1]});
+    }
+    
+    for (std::pair<std::string, string> element : itemInfo)
+        std::cout << element.first << " :: " << element.second << std::endl;
+    
+
+}
+std::unordered_map<string,string> Game::getItemInfo(){
+    return itemInfo;
 }
 
 void Game::loadFiles() {
@@ -220,6 +246,8 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
     loadFiles();
     // Load helpdata file
     readHelpInfo();
+    // Load itemdata file
+    readItemInfo();
     // Initialize previousRoom to 0 so that it is different from the current room,
     // so that the description of the current room is displayed at the beginning of the
     // game loop

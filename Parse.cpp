@@ -452,6 +452,17 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     	}
     	
     }
+    // TEMP item unordered map test
+    else if(strstr(userInput.c_str(), "hat")){
+    
+        for (std::pair<std::string, string> element : curGame.getItemInfo()){
+            if(element.first == userInput.c_str()){
+                cout << element.second << endl;
+            }
+        }
+        
+
+    }
 
     // Save game
     else if (strstr(userInput.c_str(), "savegame") ||strstr(userInput.c_str(), "Savegame")) {

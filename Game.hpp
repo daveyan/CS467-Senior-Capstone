@@ -2,17 +2,20 @@
 #define GAME_HPP
 
 #include <vector>
+#include <unordered_map>
 #include "Room.hpp"
 #include "Item.hpp"
 
 using std::vector;
 using std::string;
 
+
 class Game {
 private:
     vector<string> items;
     char userInput[256];
     vector<string> helpInfo;
+    std::unordered_map<string,string> itemInfo;
 public:
     bool isFinished = false;
     vector<Room> rooms;
@@ -30,6 +33,9 @@ public:
     void clearInv();
     void readHelpInfo();
     vector<string> getHelpInfo();
+    void readItemInfo();
+    std::unordered_map<string,string> getItemInfo();
+
 };
 
 #endif
