@@ -92,8 +92,8 @@ void Game::readItemInfo(){
          itemInfo.insert({data[i],data[i+1]});
     }
     
-    for (std::pair<std::string, string> element : itemInfo)
-        std::cout << element.first << " :: " << element.second << std::endl;
+    //for (std::pair<std::string, string> element : itemInfo)
+    //   std::cout << element.first << " :: " << element.second << std::endl;
     
 
 }
