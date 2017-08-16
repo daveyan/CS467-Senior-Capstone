@@ -57,6 +57,24 @@ void Game::clearInv(){
     inventory.clear();
 }
 
+void Game::readHelpInfo(){
+    string line;
+    std::ifstream infile ("helpdata");
+    if(infile.is_open()){
+        while(getline(infile,line)){
+            helpInfo.push_back(line);
+        }
+        infile.close();
+    }
+    else{
+        cout << "unable to open file" << endl;
+    }
+}
+
+vector<string> Game::getHelpInfo(){
+    return helpInfo;
+}
+
 void Game::loadFiles() {
     DIR* curDir;
     struct dirent *fileInDir;
@@ -200,6 +218,8 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
     Parse parser;
     // Load all of the room information in the room files into memory
     loadFiles();
+    // Load helpdata file
+    readHelpInfo();
     // Initialize previousRoom to 0 so that it is different from the current room,
     // so that the description of the current room is displayed at the beginning of the
     // game loop

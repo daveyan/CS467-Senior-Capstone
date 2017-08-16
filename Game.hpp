@@ -12,6 +12,7 @@ class Game {
 private:
     vector<string> items;
     char userInput[256];
+    vector<string> helpInfo;
 public:
     bool isFinished = false;
     vector<Room> rooms;
@@ -27,6 +28,8 @@ public:
     bool inInventory(string item);
     void play();
     void clearInv();
+    void readHelpInfo();
+    vector<string> getHelpInfo();
 };
 
 #endif
