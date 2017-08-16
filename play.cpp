@@ -1,183 +1,70 @@
 #include <iostream>
+#include <string>
 
-#include "ParseLine.hpp"
 #include "Game.hpp"
 
+using std::string;
+
 int main() {
-	Game newGame;
+    Game newGame;
+    /*
+    // Initialize first room
+    string entranceLongDesc = "You see a patch of cracked stone on the ground. The slabs are thin, and there is a gap in the pile that reveals what looks like metal. The tremor must have caused the stone to crack, but why is there metal underneath? There is also a small pile of what looks like mangled metal debris at the edge of the cracked stone.";
+    string entranceShortDesc = "A tremor has loosened stone that was used to conceal a secret door, a door which as been pried open.";
+    string entranceName = "Entrance";
+    int entranceId = 1;
+    // Item for room 1
+    Item metalBar(1, "Metal Bar", "Looks sturdy, like it could be used for leverage");
+    // Create room, add adjacent rooms, and add item
+    Room entrance(entranceId, entranceName, entranceShortDesc, entranceLongDesc);
+    entrance.addNorth(2); // Vestibule/Lockers is the next room
+    entrance.addItem(metalBar);
+    // Add room to game
+    //Game newGame(entrance);
+    // Create game. As of now, it needs a room
+    newGame.addRoom(entrance);
 
-	newGame.setcurRoom(0);
+    // Initialize second room
+    string vestLongDesc = "Small vestibule. There are lockers on both sides of the walls, with benches in between. To the left is a door labeled “Utility Closet.” It is dark inside except for the light coming in from the door you just pried open. One of the lockers appears to be slightly open. To the east is the power supply room.";
+    string vestShortDesc = "Small vestibule";\
+    string vestName = "Vestibule";
+    int vestId = 2;
+    // Items for room 2
+    Item keycard(2, "Keycard", "Keycard, probably used to gain access to the facility");
+    Item flashlight(3, "Flashlight", "Used to illuminate the darkness");
+    // Create room, add adjacent rooms, and add item
+    Room vestibule(vestId, vestName, vestShortDesc, vestLongDesc);
+    vestibule.addSouth(1); // Entrance
+    vestibule.addEast(3); // Mechanical Room
+    vestibule.addNorth(5); // Lounge
+    vestibule.addItem(keycard);
+    vestibule.addItem(flashlight);
+    // Add room to game
+    newGame.addRoom(vestibule);
 
-	//ALL ITEMS
+    // Initialize third room
+    string mechLongDesc = "This appears to have the machinery necessary to provide energy to the building and keep the equipment running. This includes a furnace, AC unit, and water. There are two dead bodies near the power supply.";
+    string mechShortDesc = "This appears to have the machinery necessary to provide energy to the building and keep the equipment running";
+    string mechName = "Mechanical Room";
+    int mechId = 3;
+    // Create room, add adjacent rooms
+    Room mechanicalRoom(mechId, mechName, mechShortDesc, mechLongDesc);
+    mechanicalRoom.addWest(2); // Vestibule
+    mechanicalRoom.addEast(4); // Garage
+    // Add room to game
+    newGame.addRoom(mechanicalRoom);
 
-	
-	Item a(1,"metalBar","");
-	Item b(2,"keycard","");
-	Item c(3,"flashlight","");
-	Item d(4,"d","");
-	Item e(5,"e","");
-	Item f(6,"f","");
-	Item g(7,"g","");
-	Item h(8,"h","");
-	/*
-	Item i(9,"i","desc");
-	Item j(10,"j","desc");
-	Item k(11,"k","desc");
-	Item l(12,"l","desc");
-	Item m(13,"m","desc");
-	Item n(14,"n","desc");
-	Item o(15,"o","desc");
-	*/
-
-	//push items into game.allitems vector - loadgame
-	newGame.allitems.push_back(a);
-	newGame.allitems.push_back(b);
-	newGame.allitems.push_back(c);
-	newGame.allitems.push_back(d);
-	newGame.allitems.push_back(e);
-	newGame.allitems.push_back(f);
-	newGame.allitems.push_back(g);
-	newGame.allitems.push_back(h);
-	/*
-	newGame.allitems.push_back(i);
-	newGame.allitems.push_back(j);
-	newGame.allitems.push_back(k);
-	newGame.allitems.push_back(l);
-	newGame.allitems.push_back(m);
-	newGame.allitems.push_back(n);
-	newGame.allitems.push_back(o);
-	*/
-
-
-	Room empty(0,"");
-
-	//ALL ROOMS	
-	Room entrance(1, "Entrance");
-	entrance.addNorth(2);
-			
-	Room vestibule(2, "Vestibule");
-	vestibule.addNorth(7); 
-	vestibule.addSouth(1); 
-	vestibule.addEast(3); 
-	
-		
-	Room mechanicalRoom(3, "Mechanical Room");
-	
-	mechanicalRoom.addEast(4); 
-	mechanicalRoom.addWest(2);
-	
-	Room garage(4,"Hidden Garage");
-	garage.addEast(4); 
-	garage.addWest(3);
-	
-	Room bathroom(5,"Bathroom");
-	bathroom.addEast(6); 
-	
-	Room breakroom(6,"Break Room");
-	breakroom.addEast(7); 
-	breakroom.addWest(5);
-	
-
-	Room lounge(7, "Lounge");
-	lounge.addNorth(12); 
-	lounge.addSouth(2); 
-	lounge.addEast(8); 
-	lounge.addWest(6);
-
-
-	Room office(8,"Office");
-	office.addWest(7);
-
-	Room mechanicalpartsupplyroom(9, "Mechanical Parts Supply Room");
-	mechanicalpartsupplyroom.addEast(10); 
-
-	Room robotassemblyroom(10,"Robot Assembly Room");
-	robotassemblyroom.addEast(11); 
-	robotassemblyroom.addWest(9);
-
-	Room taxidermyreasearchroom(11,"Taxidermy Research Room");
-	taxidermyreasearchroom.addEast(12); 
-	taxidermyreasearchroom.addWest(10);
-
-	Room computerlab(12, "Computer Lab");
-	computerlab.addNorth(15); 
-	computerlab.addSouth(7); 
-	computerlab.addEast(13); 
-	computerlab.addWest(11);
-
-	Room liverobotanimals(13, "Live Robot Animals");
-	liverobotanimals.addEast(14); 
-	liverobotanimals.addWest(12);
-
-	Room mockforest(14,"Mock Forest");
-	mockforest.addWest(13);
-
-	Room monitoringroom(15, "Monitoring Room");
-	monitoringroom.addSouth(13); 
-	
-
-	//ADDING ITEMS TO ROOMS
-	entrance.addItem("metalBar");
-	vestibule.addItem("keycard");
-	mechanicalRoom.addItem("flashlight");
-	garage.addItem("d");
-	bathroom.addItem("e");
-	breakroom.addItem("f");
-	lounge.addItem("g");
-	office.addItem("h");
-	/*
-	mechanicalpartsupplyroom.addItem("i");
-	robotassemblyroom.addItem("j");
-	taxidermyreasearchroom.addItem("k");
-	computerlab.addItem("l");
-	liverobotanimals.addItem("m");
-	mockforest.addItem("n");
-	monitoringroom.addItem("o");
-	*/
-	
-	
-	//ADD ROOMS TO NEW GAME
-	newGame.addRoom(empty);
-	newGame.addRoom(entrance); 					//1
-	newGame.addRoom(vestibule);					//2	
-	newGame.addRoom(mechanicalRoom);			//3
-	newGame.addRoom(garage);					//4
-	newGame.addRoom(bathroom);					//5
-	newGame.addRoom(breakroom);					//6
-	newGame.addRoom(lounge);					//7
-	newGame.addRoom(office);
-	newGame.addRoom(mechanicalpartsupplyroom);
-	newGame.addRoom(robotassemblyroom);
-	newGame.addRoom(taxidermyreasearchroom);
-	newGame.addRoom(computerlab);
-	newGame.addRoom(liverobotanimals);
-	newGame.addRoom(mockforest);
-	newGame.addRoom(monitoringroom);
-	
-	//Reading room text and adding it to the rooms.
-	for (int i = 1; i <= 15; i++){
-		string desclong = "";
-		string descshort = "";
-		string feature1 = "";
-		string feature2 = "";
-		desclong = newGame.rooms[i].getDesc("long");
-		descshort = newGame.rooms[i].getDesc("short");
-		feature1 = newGame.rooms[i].getDesc("Feature1");
-		feature2 = newGame.rooms[i].getDesc("Feature2");
-
-		newGame.rooms[i].setLongDesc(desclong);
-		newGame.rooms[i].setShortDesc(descshort);
-		newGame.rooms[i].setFeature1Response(feature1);
-		newGame.rooms[i].setFeature2Response(feature2);
-	}
-
-	//Reading item text and adding it to the item desc
-	for (int i = 0; i < 8; i++){
-		string itemDesc = newGame.allitems[i].readDescription(newGame.allitems[i].getName());
-		newGame.allitems[i].setDescription(itemDesc);
-	}
-
-
-    newGame.play(newGame, entrance);
+    // Initialize fifth room
+    string loungeLongDesc = "Open area. A couple of couches. There is a table with a chess board out. You see a note next to the chess board. The is a bulletin board with a warning on it.";
+    string loungeShortDesc = "Open area. A couple of couches. There is a table with a chess board out. You see a note next to the chess board. The is a bulletin board with a warning on it.";
+    string loungeName = "Lounge";
+    int loungeId = 5;
+    // Create room, add adjacent rooms
+    Room lounge(loungeId, loungeName, loungeShortDesc, loungeLongDesc);
+    lounge.addSouth(2);
+    // Add room to game
+    newGame.addRoom(lounge);
+    */
+    newGame.play();
     return 0;
 }

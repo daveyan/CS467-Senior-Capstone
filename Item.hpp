@@ -7,19 +7,17 @@ using std::string;
 
 class Item {
 private:
-	int id;
-	string name;
-	string description;
-	string itemPath;
+    int id;
+    string name;
+    string description;
 public:
-	Item(int id, string name, string description);
-	void setId(int id);
-	void setName(string name);
-	void setDescription(string description);
-	int getId();
-	string getName();
-	string getDescription();
-	string readDescription(string itemName);
+    Item(int id, string name, string description);
+    void setId(int id);
+    void setName(string name);
+    void setDescription(string description);
+    int getId();
+    string getName();
+    string getDescription();
 };
 
 #endif

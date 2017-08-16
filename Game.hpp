@@ -10,23 +10,23 @@ using std::string;
 
 class Game {
 private:
-    int curRoom;
     vector<string> items;
-    vector<string> inventory;
     char userInput[256];
-    bool isFinished = false;
 public:
-    int getcurRoom();
-    void setcurRoom(int i);
+    bool isFinished = false;
     vector<Room> rooms;
-    vector<Item> allitems; //for loadgame purposes
+    Room* getCurRoom();
+    int curRoom;
     void addRoom(Room room);
     void addItem(string item);
     void addToInventory(string item);
     void removeFromInv(string item);
+    vector<string> inventory;
     vector<string> getInventory();
+    void loadFiles();
+    bool inInventory(string item);
+    void play();
     void clearInv();
-    void play(Game newGame, Room rooms);
 };
 
 #endif
