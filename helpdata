@@ -1,1 +1,18 @@
-Commands
+
+Personal Commands
+look:: repeats the long form room description
+look at <feature or object>:: examine an object or feature more closely
+take <object> :: add an object to your inventory
+drop <object> :: drop and object into the current room
+inventory :: display your current inventory
+
+Travel Commands
+Use any of the following commands to travel within the game
+go <direction>::
+go <room name>::
+<direction>::
+<room name>::
+
+Game Commmands
+savegame:: save your current progress (*only one save file)
+loadgame:: load your game from an existing save

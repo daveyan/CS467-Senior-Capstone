@@ -502,71 +502,76 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     else if (strstr(userInput.c_str(), "loadgame") ||strstr(userInput.c_str(), "Loadgame")) {
 
         cout << ">>> Game Loaded <<<" << endl;
-        ifstream loadfile;
-        loadfile.open ("savegame.txt");
+        ifstream loadfile ("savegame.txt");
 
-        vector <string> loadfileData;
-        string s;
-        int data;
-        int lineNumber = 0;
+        if(!loadfile.fail()){
 
-        //Read all the data from the save file line by line
-        while(std::getline(loadfile,s)){
-                loadfileData.push_back(s);
-            }
+	        vector <string> loadfileData;
+	        string s;
+	        int data;
+	        int lineNumber = 0;
 
-        //Player Data
-        //room information
-        int loadRoomId = std::stoi(loadfileData[lineNumber]);
-        curGame.curRoom = loadRoomId;
-        lineNumber++;
-        //player inventory
-        int numItems = std::stoi(loadfileData[lineNumber]);
-        lineNumber++;
-        //clear the exisiting inventory
-        curGame.clearInv();
-        //write items to inventory
-        if(numItems != 0){
-            for (int i = 0; i < numItems; i++){
-                curGame.addToInventory(loadfileData[lineNumber+i]);
-            }
-        }
-        lineNumber += numItems;
+	        //Read all the data from the save file line by line
+	        while(std::getline(loadfile,s)){
+	                loadfileData.push_back(s);
+	            }
 
-        //Room Data
-        for (int i = 0; i < curGame.rooms.size();i++){
-            curGame.rooms[i].clearDroppedItems();
-            curGame.rooms[i].item = "null";
+	        //Player Data
+	        //room information
+	        int loadRoomId = std::stoi(loadfileData[lineNumber]);
+	        curGame.curRoom = loadRoomId;
+	        lineNumber++;
+	        //player inventory
+	        int numItems = std::stoi(loadfileData[lineNumber]);
+	        lineNumber++;
+	        //clear the exisiting inventory
+	        curGame.clearInv();
+	        //write items to inventory
+	        if(numItems != 0){
+	            for (int i = 0; i < numItems; i++){
+	                curGame.addToInventory(loadfileData[lineNumber+i]);
+	            }
+	        }
+	        lineNumber += numItems;
 
-            //current position room name
-            lineNumber++;
-            //current position visited
-            curGame.rooms[i].setVisited(std::stoi(loadfileData[lineNumber]));
-            lineNumber++;
-            //current position hasItem
-            curGame.rooms[i].hasItem = std::stoi(loadfileData[lineNumber]);
-            lineNumber++;
-            //current position hasSecondItem
-            curGame.rooms[i].hasSecondItem = std::stoi(loadfileData[lineNumber]);
-            lineNumber++;
-            //current position roomItem
-            curGame.rooms[i].item = loadfileData[lineNumber];
-            lineNumber++;
-            //current position number of dropped item
-            int numDroppedItems = std::stoi(loadfileData[lineNumber]);
-            lineNumber++;
-            //current position adding each dropped item
-            if (numDroppedItems != 0){
-                for (int j = 0; j < numDroppedItems;j++){
-                    curGame.rooms[i].addItem(loadfileData[lineNumber]);
-                    lineNumber++;
-                }
-            }
+	        //Room Data
+	        for (int i = 0; i < curGame.rooms.size();i++){
+	            curGame.rooms[i].clearDroppedItems();
+	            curGame.rooms[i].item = "null";
+
+	            //current position room name
+	            lineNumber++;
+	            //current position visited
+	            curGame.rooms[i].setVisited(std::stoi(loadfileData[lineNumber]));
+	            lineNumber++;
+	            //current position hasItem
+	            curGame.rooms[i].hasItem = std::stoi(loadfileData[lineNumber]);
+	            lineNumber++;
+	            //current position hasSecondItem
+	            curGame.rooms[i].hasSecondItem = std::stoi(loadfileData[lineNumber]);
+	            lineNumber++;
+	            //current position roomItem
+	            curGame.rooms[i].item = loadfileData[lineNumber];
+	            lineNumber++;
+	            //current position number of dropped item
+	            int numDroppedItems = std::stoi(loadfileData[lineNumber]);
+	            lineNumber++;
+	            //current position adding each dropped item
+	            if (numDroppedItems != 0){
+	                for (int j = 0; j < numDroppedItems;j++){
+	                    curGame.rooms[i].addItem(loadfileData[lineNumber]);
+	                    lineNumber++;
+	                }
+	            }
 
 
-        }
+	        }
 
-        loadfile.close();
+	        loadfile.close();
+    	}
+    	else{
+    		cout << "No save file exists" <<endl;
+    	}
     }
 
     // Feature 1 interaction
