@@ -602,14 +602,37 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
             cout << curRoom->getFeature2Response() << endl;
         }
 
+        // If user requests description of item in room
+        if (strstr(userInput.c_str(), curRoom->item.c_str())) {
+            // Store the item in a local string
+            string room_item = curRoom->item;
+            for (std::pair<std::string, string> element : curGame.getItemInfo()){
+                if(strstr(element.first.c_str(), room_item.c_str())){
+                    cout << element.second << endl;
+                }
+            }
+        }
+
         // If user requests description of an item in their inventory
         for (int i = 0; i < curGame.inventory.size(); i++) {
             if(strstr(userInput.c_str(), curGame.inventory[i].c_str())){
-
                 // Store the item in a local string
-                string item = curGame.inventory[i];
+                string inventory_item = curGame.inventory[i];
                 for (std::pair<std::string, string> element : curGame.getItemInfo()){
-                    if(strstr(element.first.c_str(), item.c_str())){
+                    if(strstr(element.first.c_str(), inventory_item.c_str())){
+                        cout << element.second << endl;
+                    }
+                }
+            }
+        }
+
+        // If not in inventory, check the current room's dropped items
+        for (int i = 0; i < curRoom->getDroppedItems().size(); i++) {
+            if (strstr(userInput.c_str(), curRoom->getDroppedItems()[i].c_str())) {
+                // Store the item in a local string
+                string dropped_item = curRoom->getDroppedItems()[i];
+                for (std::pair<std::string, string> element : curGame.getItemInfo()){
+                    if(strstr(element.first.c_str(), dropped_item.c_str())){
                         cout << element.second << endl;
                     }
                 }
@@ -617,7 +640,7 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
         }
     }
 
-     // Repeat long-form room description
+     // User wants to repeat long-form room description
     else if (strstr(userInput.c_str(), "look") || strstr(userInput.c_str(), "Look")) {
         cout << curRoom->getLongDesc() << endl;
     }
