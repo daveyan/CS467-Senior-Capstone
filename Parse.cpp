@@ -61,7 +61,15 @@ bool Parse::checkForMatch(vector<string> collection1, vector<string> collection2
 
 void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
     // If the user wants to go north
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+    // Find the connecting room's name
+    string north_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getNorth()) {
+            north_room = curGame.rooms[i].getName();
+        }
+    }
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL ||
+        strstr(userInput.c_str(), north_room.c_str()) != NULL) {
         //if (!curGame.inInventory("bar")) {
         if (curRoom->hasItem == false) {
             cout << "You should have a bar to pry the door open..." << endl;
@@ -70,13 +78,13 @@ void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
             curGame.curRoom = curRoom->getNorth();
         }
     // If the user wants to go south
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
     // If the user wants to go east
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL) {
         cout << "There is nowhere east of here" << endl;
     // If the user wants to go west
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL) {
         cout << "There is nowhere west of here" << endl;
     // Check if the user wants to pick up the bar
     } else if (checkForMatch(actions, entranceItemNouns, userInput)) {
@@ -98,22 +106,39 @@ void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
+    
+    // Get the names of each connecting room
+    string north_room, south_room, east_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getNorth()) {
+            north_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getSouth()) {
+            south_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+    }
     // If the user wants to go north
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL ||
+        strstr(userInput.c_str(), north_room.c_str()) != NULL) {
+        
         // Need keycard
-        //if (!curGame.inInventory("keycard")) {
         if (curRoom->hasItem == false) {
             cout << "You need a keycard to go through the door open..." << endl;
         } else {
             curGame.curRoom = curRoom->getNorth();
         }
 
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL ||
+        strstr(userInput.c_str(), south_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getSouth();
 
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
+        
         // Need flashlight
-       // if (!curGame.inInventory("flashlight")) {
         if (curRoom->hasSecondItem == false) {
             cout << "You should have a flashlight before going into such a dark room..." << endl;
         } else {
@@ -121,7 +146,7 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
             curGame.curRoom = curRoom->getEast();
         }
 
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL) {
         cout << "There is nowhere west of here" << endl;
 
     } else if (checkForMatch(actions, vestibuleFlashlightNouns, userInput)) {
@@ -139,13 +164,27 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseMechanicalRoom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+    
+    // Get the names of each connecting room
+    string east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -153,11 +192,20 @@ void Parse::parseMechanicalRoom(Game &curGame, Room *curRoom, string userInput) 
 }
 
 void Parse::parseGarage(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL) {
         //if (!curGame.inInventory("opener")) {
         if (curRoom->hasItem == false) {
             cout << "Looks like a garage door opener is needed to leave this way..." << endl;
@@ -165,7 +213,8 @@ void Parse::parseGarage(Game &curGame, Room *curRoom, string userInput) {
             cout << "You should have opened the garage door, sped out, and now you are free to tell the world about what you learned!" << endl;
             curGame.isFinished = true;
         }
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, garageItemNouns, userInput)) {
         // user wants to grab keycard
@@ -185,13 +234,27 @@ void Parse::parseGarage(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseBreakRoom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, breakroomItemNouns, userInput)) {
         // user wants to grab hat
@@ -211,13 +274,23 @@ void Parse::parseBreakRoom(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseBathroom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string east_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL) {
         cout << "There is nowhere west of here" << endl;
     } else {
         cout << "Command not recognized" << endl;
@@ -225,13 +298,35 @@ void Parse::parseBathroom(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseLounge(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string north_room, south_room, east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getNorth()) {
+            north_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getSouth()) {
+            south_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL ||
+        strstr(userInput.c_str(), north_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getNorth();
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL ||
+        strstr(userInput.c_str(), south_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getSouth();
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -239,13 +334,23 @@ void Parse::parseLounge(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseOffice(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL) {
         cout << "There is nowhere east of here" << endl;
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, officeItemNouns, userInput)) {
         // user wants to grab file
@@ -264,7 +369,26 @@ void Parse::parseOffice(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string north_room, south_room, east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getNorth()) {
+            north_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getSouth()) {
+            south_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL ||
+        strstr(userInput.c_str(), north_room.c_str()) != NULL) {
         // Need postit
         //if (!curGame.inInventory("postit")) {
         if (curRoom->hasSecondItem == false) {
@@ -273,9 +397,11 @@ void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
             cout << "You use the passcode to go through the door" << endl;
             curGame.curRoom = curRoom->getNorth();
         }
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL ||
+        strstr(userInput.c_str(), south_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getSouth();
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         // Need hard had
         //if (!curGame.inInventory("hat")) {
         if (curRoom->hasItem == false) {
@@ -284,7 +410,8 @@ void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
             cout << "With the hard hat on, you move forward..." << endl;
             curGame.curRoom = curRoom->getEast();
         }
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -292,20 +419,34 @@ void Parse::parseComputerLab(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseLiveRobotAnimals(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+     // Get the names of each connecting room
+    string east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
+        
         // Need net
-        //if (!curGame.inInventory("net")) {
         if (curRoom->hasItem == false) {
             cout << "Something should be used to secure the area before moving forward..." << endl;
         } else {
             cout << "The net was thrown, capturing the owl, allowing you to move forward" << endl;
             curGame.curRoom = curRoom->getEast();
         }
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -313,18 +454,28 @@ void Parse::parseLiveRobotAnimals(Game &curGame, Room *curRoom, string userInput
 }
 
 void Parse::parseMockForest(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere to the north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere to the south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL) {
         cout << "There is nowhere to the east of here" << endl;
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else if (checkForMatch(actions, mockforestItemNouns, userInput)) {
+        
         // user wants to grab postit
         Room* computerLab = findRoom(curGame, "Computer Lab");
-        //if (curGame.inInventory("postit")) {
         if (computerLab->hasSecondItem == true) {
             cout << "You already have that in your inventory." << endl;
         } else {        
@@ -339,13 +490,27 @@ void Parse::parseMockForest(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseTaxidermy(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -353,13 +518,27 @@ void Parse::parseTaxidermy(Game &curGame, Room *curRoom, string userInput) {
 }
 
 void Parse::parseRobotAssemblyRoom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string east_room, west_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+        if (curGame.rooms[i].getId() == curRoom->getWest()) {
+            west_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL ||
+        strstr(userInput.c_str(), west_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getWest();
     } else {
         cout << "Command not recognized" << endl;
@@ -367,13 +546,23 @@ void Parse::parseRobotAssemblyRoom(Game &curGame, Room *curRoom, string userInpu
 }
 
 void Parse::parseMechanicalSupplyRoom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string east_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getEast()) {
+            east_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL) {
         cout << "There is nowhere south of here" << endl;
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL ||
+        strstr(userInput.c_str(), east_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getEast();
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL) {
         cout << "There is nowhere west of here" << endl;
     } else if (checkForMatch(actions, mechanicalsupplyItemNouns, userInput)) {
         // user wants to grab net
@@ -393,13 +582,23 @@ void Parse::parseMechanicalSupplyRoom(Game &curGame, Room *curRoom, string userI
 }
 
 void Parse::parseMonitoringRoom(Game &curGame, Room *curRoom, string userInput) {
-    if (strstr(userInput.c_str(), "go north") != NULL) {
+
+    // Get the names of each connecting room
+    string south_room;
+    for (int i = 0; i < curGame.rooms.size(); i++) {
+        if (curGame.rooms[i].getId() == curRoom->getSouth()) {
+            south_room = curGame.rooms[i].getName();
+        }
+    }
+
+    if (strstr(userInput.c_str(), "go north") != NULL || strstr(userInput.c_str(), "north") != NULL) {
         cout << "There is nowhere north of here" << endl;
-    } else if (strstr(userInput.c_str(), "go south") != NULL) {
+    } else if (strstr(userInput.c_str(), "go south") != NULL || strstr(userInput.c_str(), "south") != NULL ||
+        strstr(userInput.c_str(), south_room.c_str()) != NULL) {
         curGame.curRoom = curRoom->getSouth();
-    } else if (strstr(userInput.c_str(), "go east") != NULL) {
+    } else if (strstr(userInput.c_str(), "go east") != NULL || strstr(userInput.c_str(), "east") != NULL) {
         cout << "There is nowhere east of here" << endl;
-    } else if (strstr(userInput.c_str(), "go west") != NULL) {
+    } else if (strstr(userInput.c_str(), "go west") != NULL || strstr(userInput.c_str(), "west") != NULL) {
         cout << "There is nowhere west of here" << endl;
     } else if (checkForMatch(actions, monitoringroomItemNouns, userInput)) {
         // user wants to grab opener
