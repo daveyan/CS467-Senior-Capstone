@@ -214,7 +214,9 @@ Room* Game::getCurRoom() {
     }
 }
 
-void Game::play() {//cout << "Welcome Bird Spy View." << endl;
+void Game::play() {
+
+    //cout << "Welcome Bird Spy View." << endl;
     //cout << "You are an intrepid explorer trying to figure out what to do for the weekend. You aren’t too much of an outdoors person but you have been hearing stories of people being attacked by owls at a relatively close state park. Not only that, but there was a tremor at the park a few weeks ago. For most people this would dissuade them from visiting, but you feel like embracing the thrill of danger so you decide to head out." << endl;
 
 
@@ -240,6 +242,7 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
     }
      */
 
+
     // Create parser to interpret the user's commands
     Parse parser;
     // Load all of the room information in the room files into memory
@@ -248,6 +251,7 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
     readHelpInfo();
     // Load itemdata file
     readItemInfo();
+
     // Initialize previousRoom to 0 so that it is different from the current room,
     // so that the description of the current room is displayed at the beginning of the
     // game loop
@@ -257,6 +261,7 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
 
     // Main gameplay loop that runs until the user completes the game, or the user enters "exit"
     while (!isFinished) {
+      
         Room *curRoom = getCurRoom();
         int curRoomId = curRoom->getId();
 
@@ -275,6 +280,8 @@ void Game::play() {//cout << "Welcome Bird Spy View." << endl;
         memset(userInput, '\0', 256);
         cin.getline(userInput, 255);
         parser.parseInput(*this, curRoom, userInput);
+
+
 
         // Implement parser
         if (strstr(userInput, "exit")) {

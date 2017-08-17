@@ -8,10 +8,10 @@ keycard
 null
 flashlight
 null
-Small vestibule with [locker]s on either side, and a [utility closet] to the left. One locker is slightly opened. To the east is the mechanical room, and to the north is the lounge.
-Small entryway. There are [locker]s on both sides of the walls, with benches in between. To the left is a door labeled [utility closet]. It is dark inside except for the light coming in from the door you just pried open. One of the lockers appears to be slightly open. To the east you see a door that is slightly open; a foul, rotten smell is emanating through the crack. Above the door you see a sign that reads Mechanical Room. It looks too dark to enter. To the north you see a closed door labeled Lounge, and what looks like a keycard reader next to the door.
-You see a jacket, pair of boots, some personal belongings. The jacket has the national park emblem on it. Is this a secret facility for the park service?
-various supplies such as a first aid kit and a {flashlight}.
+Small vestibule with [locker]s on either side, and a [utility closet] to the left. One [locker] is slightly opened. To the east is the (Mechanical Room) with the rotten smell, and to the north is the well decorated (Lounge). To the south is the (Entrance) to the facility.
+ Small entryway. There are [locker]s on both sides of the walls, with benches in between. It is dark inside except for the light coming in from the door you just pried open.The facility looks very modern and well designed, but it appears that the occupants were not in a hurry to organize their things. This room gives off a chaotic vibe. To the left you see a door labeled utility [closet].  One of the [locker]s appears to be slightly open. To the east you see a door that is slightly open; a foul, rotten, putrid  smell is emanating through the crack. Above the door you see a sign that reads (Mechanical Room). It looks too dark to enter without additional illumination. To the north you see a closed, locked door labeled (Lounge), with what looks like a keycard reader next to it. You can see through the window that the lounge looks well decorated. To the south is the hidden, previously stone covered (Entrance) to the facility.
+You see a jacket, pair of boots, and some personal belongings. The jacket has the national park emblem on it. Is this a secret facility for the park service? That seems… strange. What would they need a secret facility for?
+ Various supplies such as a first aid kit, supplies for cleaning up spills, and a {flashlight}.
 locker
 closet
 flashlight
