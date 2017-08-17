@@ -9,7 +9,7 @@ public:
     //void popActions();
     //void popEntranceItemNouns();
 
-    vector<string> actions = {"pick", "pick up", "snag", "lift", "scoop", "grab", "inspect", "check", "read", "open"};
+    vector<string> actions = {"pick", "pick up", "snag", "lift", "scoop", "grab", "inspect", "check", "read", "open", "take"};
     //vector<string> actions;
     vector<string> entranceItemNouns = {"bar", "metal bar", "pipe", "metal pipe"};
     vector<string> vestibuleFlashlightNouns = {"flashlight", "flash light"};

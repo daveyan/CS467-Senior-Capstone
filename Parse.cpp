@@ -445,24 +445,28 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     }
 
     // Help command
-    else if (strstr(userInput.c_str(), "help") ||strstr(userInput.c_str(), "help")) {
+    else if (strstr(userInput.c_str(), "help") ||strstr(userInput.c_str(), "Help")) {
     	cout << " >>> Help Information <<<" << endl;
     	for (int i = 0; i < curGame.getHelpInfo().size();i++){
     		cout << curGame.getHelpInfo()[i] <<endl;
     	}
     	
     }
+
+
     // TEMP item unordered map test
-    else if(strstr(userInput.c_str(), "hat")){
-    
-        for (std::pair<std::string, string> element : curGame.getItemInfo()){
-            if(element.first == userInput.c_str()){
-                cout << element.second << endl;
+    /*if (strstr(userInput.c_str(), "look at") || strstr(userInput.c_str(), "Look at")) {
+        for (int i = 0; i < curGame.inventory.size(); i++) {
+            if(strstr(userInput.c_str(), curGame.inventory[i].c_str())){
+            
+                for (std::pair<std::string, string> element : curGame.getItemInfo()){
+                    if(element.first == userInput.c_str()){
+                        cout << element.second << endl;
+                    }
+                }
             }
         }
-        
-
-    }
+    }*/
 
     // Save game
     else if (strstr(userInput.c_str(), "savegame") ||strstr(userInput.c_str(), "Savegame")) {
@@ -585,16 +589,40 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     	}
     }
 
-    // Feature 1 interaction
-    else if (strstr(userInput.c_str(), curRoom->getFeature1Key().c_str()) != NULL) {
-        cout << curRoom->getFeature1Response() << endl;
+    // Display Feature 1 or 2 descriptions as well as item description
+    else if (strstr(userInput.c_str(), "look at") || strstr(userInput.c_str(), "Look at")) {
+        
+        // If user requests 1st room feature description
+        if (strstr(userInput.c_str(), curRoom->getFeature1Key().c_str()) != NULL) {
+            cout << curRoom->getFeature1Response() << endl;
+        }
 
-    // Feature 2 interaction
-    } else if (strstr(userInput.c_str(), curRoom->getFeature2Key().c_str()) != NULL) {
-        cout << curRoom->getFeature2Response() << endl;
+        // If user request 2nd room feature description
+        if (strstr(userInput.c_str(), curRoom->getFeature2Key().c_str()) != NULL) {
+            cout << curRoom->getFeature2Response() << endl;
+        }
 
+        // If user requests description of an item in their inventory
+        for (int i = 0; i < curGame.inventory.size(); i++) {
+            if(strstr(userInput.c_str(), curGame.inventory[i].c_str())){
+
+                // Store the item in a local string
+                string item = curGame.inventory[i];
+                for (std::pair<std::string, string> element : curGame.getItemInfo()){
+                    if(strstr(element.first.c_str(), item.c_str())){
+                        cout << element.second << endl;
+                    }
+                }
+            }
+        }
+    }
+
+     // Repeat long-form room description
+    else if (strstr(userInput.c_str(), "look") || strstr(userInput.c_str(), "Look")) {
+        cout << curRoom->getLongDesc() << endl;
+    }
     // User wants to exit
-    } else if (strstr(userInput.c_str(), "exit") != NULL) {
+    else if (strstr(userInput.c_str(), "exit") != NULL) {
         curGame.isFinished = true;
 
     // User wants to drop an item in a room
