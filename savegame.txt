@@ -1,25 +1,22 @@
-7
-5
-bar
+2
+2
 flashlight
 keycard
-file
-hat
 Bathroom
-1
+0
 0
 0
 null
 0
 Break Room
-1
 0
 0
-null
+0
+hat
 0
 Computer Lab
 0
-1
+0
 0
 null
 0
@@ -46,7 +43,8 @@ Lounge
 0
 0
 null
-0
+1
+bar
 Mechanical Room
 1
 0
@@ -72,10 +70,10 @@ Monitoring Room
 opener
 0
 Office
-1
-1
 0
-null
+0
+0
+file
 0
 Robot Assembly Room
 0
