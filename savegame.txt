@@ -1,25 +1,21 @@
-7
-5
-bar
-flashlight
-keycard
-file
-hat
-Bathroom
+2
 1
+bar
+Bathroom
+0
 0
 0
 null
 0
 Break Room
-1
 0
 0
-null
+0
+hat
 0
 Computer Lab
 0
-1
+0
 0
 null
 0
@@ -30,10 +26,10 @@ Entrance
 null
 0
 Garage
-1
 0
 0
-null
+0
+keycard
 0
 Live Robot Animals
 0
@@ -42,13 +38,13 @@ Live Robot Animals
 null
 0
 Lounge
-1
+0
 0
 0
 null
 0
 Mechanical Room
-1
+0
 0
 0
 null
@@ -72,10 +68,10 @@ Monitoring Room
 opener
 0
 Office
-1
-1
 0
-null
+0
+0
+file
 0
 Robot Assembly Room
 0
@@ -91,7 +87,7 @@ null
 0
 Vestibule
 1
-1
-1
-null
+0
+0
+flashlight
 0

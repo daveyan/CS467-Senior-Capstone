@@ -645,7 +645,7 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
 
     // Help command
     else if (strstr(userInput.c_str(), "help") ||strstr(userInput.c_str(), "Help")) {
-    	cout << " >>> Help Information <<<" << endl;
+    	cout << ">>> Help Information <<<" << endl;
     	for (int i = 0; i < curGame.getHelpInfo().size();i++){
     		cout << curGame.getHelpInfo()[i] <<endl;
     	}
