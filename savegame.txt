@@ -42,7 +42,8 @@ Lounge
 0
 0
 null
-0
+1
+bar
 Mechanical Room
 0
 0

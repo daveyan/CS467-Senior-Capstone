@@ -275,17 +275,22 @@ void Game::play() {
         }
         previousRoom = curRoomId;
 
-        cout << "What would you like to do?" << endl;
+        cout  << "What would you like to do?" << endl;
         // Get the user's input and pass it to the parser
         memset(userInput, '\0', 256);
         cin.getline(userInput, 255);
         parser.parseInput(*this, curRoom, userInput);
 
-
-
+       
+        /*
         // Implement parser
         if (strstr(userInput, "exit")) {
             isFinished = true;
         }
+        */
+    }
+    if (inInventory("file")) {
+        cout << "Since you grabbed the file in the office, you now have hard evidence of the goings on of that place" << endl;
+        cout << "You leak this information to the media and become famous like you always knew you would!" << endl;
     }
 }

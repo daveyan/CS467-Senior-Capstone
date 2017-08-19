@@ -59,6 +59,17 @@ bool Parse::checkForMatch(vector<string> collection1, vector<string> collection2
     return false;
 }
 
+bool Parse::checkForMatch(vector<string> collection1, string userInput) {
+    int sizeOfCol1 = collection1.size();
+
+    for (int i = 0; i < sizeOfCol1; i++) {
+        if (strstr(userInput.c_str(), collection1[i].c_str()) != NULL) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Parse::parseEntrance(Game &curGame, Room *curRoom, string userInput) {
     // If the user wants to go north
     // Find the connecting room's name
@@ -128,6 +139,7 @@ void Parse::parseVestibule(Game &curGame, Room *curRoom, string userInput) {
         if (curRoom->hasItem == false) {
             cout << "You need a keycard to go through the door open..." << endl;
         } else {
+            cout << "Keycard used to unlock the door" << endl;
             curGame.curRoom = curRoom->getNorth();
         }
 
@@ -653,20 +665,6 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     }
 
 
-    // TEMP item unordered map test
-    /*if (strstr(userInput.c_str(), "look at") || strstr(userInput.c_str(), "Look at")) {
-        for (int i = 0; i < curGame.inventory.size(); i++) {
-            if(strstr(userInput.c_str(), curGame.inventory[i].c_str())){
-            
-                for (std::pair<std::string, string> element : curGame.getItemInfo()){
-                    if(element.first == userInput.c_str()){
-                        cout << element.second << endl;
-                    }
-                }
-            }
-        }
-    }*/
-
     // Save game
     else if (strstr(userInput.c_str(), "savegame") ||strstr(userInput.c_str(), "Savegame")) {
 
@@ -788,9 +786,26 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
     	}
     }
 
+    // Feature 1 interaction
+    else if (strstr(userInput.c_str(), curRoom->getFeature1Key().c_str()) != NULL) {
+        if (checkForMatch(actions, userInput)) {
+            cout << curRoom->getFeature1Response() << endl;
+        } else {
+            cout << "Command not recognized" << endl;
+        }
+
+    // Feature 2 interaction
+    } else if (strstr(userInput.c_str(), curRoom->getFeature2Key().c_str()) != NULL) {
+        if (checkForMatch(actions, userInput)) {
+            cout << curRoom->getFeature2Response() << endl;
+        } else {
+            cout << "Command not recognized" << endl;
+        }
+    }
     // Display Feature 1 or 2 descriptions as well as item description
     else if (strstr(userInput.c_str(), "look at") || strstr(userInput.c_str(), "Look at")) {
         
+        /*
         // If user requests 1st room feature description
         if (strstr(userInput.c_str(), curRoom->getFeature1Key().c_str()) != NULL) {
             cout << curRoom->getFeature1Response() << endl;
@@ -800,6 +815,7 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
         if (strstr(userInput.c_str(), curRoom->getFeature2Key().c_str()) != NULL) {
             cout << curRoom->getFeature2Response() << endl;
         }
+        */
 
         // If user requests description of item in room
         if (strstr(userInput.c_str(), curRoom->item.c_str())) {
@@ -841,7 +857,7 @@ void Parse::parseInput(Game &curGame, Room *curRoom, string userInput) {
 
      // User wants to repeat long-form room description
     else if (strstr(userInput.c_str(), "look") || strstr(userInput.c_str(), "Look")) {
-        cout << curRoom->getLongDesc() << endl;
+        cout << endl << curRoom->getLongDesc() << endl;
     }
     // User wants to exit
     else if (strstr(userInput.c_str(), "exit") != NULL) {
